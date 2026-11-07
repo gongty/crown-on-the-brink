@@ -1,0 +1,75 @@
+{
+  "cue.title": {
+    "bpm": 64,
+    "instrument": "qin",
+    "notes": [
+      0,
+      4,
+      2,
+      1,
+      0,
+      2,
+      4,
+      3
+    ]
+  },
+  "cue.court": {
+    "bpm": 72,
+    "instrument": "bell",
+    "notes": [
+      0,
+      0,
+      3,
+      2,
+      0,
+      1,
+      2,
+      4
+    ],
+    "drum": 4
+  },
+  "cue.harem": {
+    "bpm": 66,
+    "instrument": "pipa",
+    "notes": [
+      2,
+      4,
+      3,
+      2,
+      1,
+      2,
+      0,
+      1
+    ]
+  },
+  "cue.market": {
+    "bpm": 108,
+    "instrument": "flute",
+    "notes": [
+      0,
+      1,
+      2,
+      4,
+      3,
+      2,
+      1,
+      4
+    ],
+    "drum": 4
+  },
+  "cue.siege": {
+    "bpm": 88,
+    "instrument": "drum",
+    "notes": [
+      0,
+      0,
+      2,
+      0,
+      3,
+      2,
+      0,
+      4
+    ],
+    "drum": 1
+  }
+}

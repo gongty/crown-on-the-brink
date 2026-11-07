@@ -1,0 +1,17 @@
+node_modules/
+dist/
+src/generated/
+src/public/assets/
+src/public/data/
+src/public/fonts/
+output/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+.playwright-cli/
+.claude/

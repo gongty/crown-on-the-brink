@@ -1,0 +1,442 @@
+# 程序独立验证样例：可单独校验/运行；不是正式剧情。
+version: 1
+meta:
+  id: guanjia-contract-validation
+  revision: v0.4-test1
+  name: 引擎合同验证稿
+  mode: sample
+  label: 程序最小验证稿｜非正式剧情
+entry: contract.start
+variables:
+  - id: 官
+    type: number
+    min: 0
+    max: 100
+    initial: 40
+    visible: true
+  - id: 兵
+    type: number
+    min: 0
+    max: 100
+    initial: 35
+    visible: true
+  - id: 民
+    type: number
+    min: 0
+    max: 100
+    initial: 50
+    visible: true
+  - id: 钱
+    type: number
+    min: 0
+    max: 100
+    initial: 35
+    visible: true
+  - id: 身
+    type: number
+    min: 0
+    max: 100
+    initial: 80
+    visible: true
+  - id: 金势
+    type: number
+    min: 0
+    max: 100
+    initial: 10
+    visible: false
+  - id: 回合
+    type: number
+    min: 1
+    max: 999
+    initial: 1
+    visible: false
+  - id: 日期
+    type: string
+    initial: 1126-01-18
+    visible: false
+  - id: 粮备
+    type: number
+    min: 0
+    max: 10
+    initial: 1
+    visible: false
+  - id: 行动
+    type: number
+    min: 0
+    max: 2
+    initial: 2
+    visible: false
+  - id: political_arrears
+    type: number
+    min: 0
+    initial: 0
+    visible: false
+  - id: 旗标.验证侦察
+    type: boolean
+    initial: false
+    visible: false
+  - id: 旗标.验证护卫
+    type: boolean
+    initial: false
+    visible: false
+  - id: 旗标.验证决胜
+    type: boolean
+    initial: false
+    visible: false
+people:
+  - id: contract_guard
+    name: 验证护卫（测试角色）
+    camp: 验证
+    tier: C
+    kind: military
+    favor: 80
+    power: 70
+    status: 在朝
+    office: 测试护卫
+    adult: true
+    fictional: true
+    face: li_gang
+    memory:
+      职责: 护卫
+scenes:
+  - id: contract.start
+    name: 新合同验证入口
+    contract: 2
+    act: 0
+    type: card
+    period: contract
+    once: false
+    weight: 1
+    cast: []
+    tension: 3
+    beat: 铺垫
+    shots:
+      - card:
+          title: 引擎合同验证
+          note: 程序测试稿 · 非正式剧情
+      - bg: bg.study
+        think: 这里只验证锁项、支付、终局与回退，不代表完整节点网。
+    choice:
+      options:
+        - id: begin
+          text: 开始准备与决断测试。
+          goto: contract.plan
+        - id: stage
+          text: 查看阶段继续测试。
+          goto: contract.stage
+  - id: contract.prepare
+    name: 两次准备机会
+    contract: 2
+    act: 0
+    type: card
+    period: contract
+    once: false
+    weight: 1
+    cast: []
+    tension: 3
+    beat: 喘息
+    shots:
+      - bg: bg.study
+        think: 只有两次准备机会，花掉的钱和粮不能凭空回来。
+    choice:
+      options:
+        - id: drill
+          text: 整军，付钱三、一次行动。
+          costs:
+            钱: 3
+            行动: 1
+          effects:
+            - 兵 +中
+          limit: 1
+          goto: contract.plan
+        - id: scout
+          text: 侦察，付钱三、一次行动。
+          costs:
+            钱: 3
+            行动: 1
+          effects:
+            - 旗标.验证侦察 = true
+          limit: 1
+          goto: contract.plan
+        - id: guard
+          text: 备护卫，付钱三、一次行动。
+          costs:
+            钱: 3
+            行动: 1
+          effects:
+            - 旗标.验证护卫 = true
+          limit: 1
+          goto: contract.plan
+        - id: back
+          text: 先回去，改用别的办法。
+          goto: contract.plan
+  - id: contract.plan
+    name: 可见锁项与多种出口
+    contract: 2
+    act: 0
+    type: card
+    period: contract
+    once: false
+    weight: 1
+    cast: []
+    tension: 6
+    beat: 两难
+    shots:
+      - bg: bg.city_wall
+        think: 有兵不等于查清敌情。明知危险仍冒进，也可能真正死去。
+    choice:
+      timer: 8
+      default: leave
+      options:
+        - id: attack
+          text: 按核实的敌情出击。
+          if: 兵 >= 42 && 旗标.验证侦察
+          costs:
+            粮备: 1
+          effects:
+            - 旗标.验证决胜 = true
+          lock:
+            reason: 兵力与敌情必须同时准备好；粮备也要真实支付。
+            checks:
+              - path: 兵
+                required: 42
+                label: 兵力
+            prepare:
+              - option: prepare
+                text: 当局仍有行动时，先安排整军或侦察。
+            rewind:
+              - scene: contract.prepare
+                text: 回到已走过的准备机会。
+          goto: contract.resolution
+        - id: prepare
+          text: 还有机会就先准备。
+          if: 行动 >= 1
+          lock:
+            reason: 本轮两次准备机会已用尽，只能换打法或回溯。
+            checks:
+              - path: 行动
+                required: 1
+                label: 准备机会
+            rewind:
+              - scene: contract.prepare
+                text: 回到准备选择。
+          goto: contract.prepare
+        - id: risk
+          text: 检查最后的护卫与险路。
+          goto: contract.risk
+        - id: leave
+          text: 放弃争国目标，与同伴远走。
+          goto: contract.departure
+  - id: contract.risk
+    name: 保护与有限救援
+    contract: 2
+    act: 0
+    type: card
+    period: contract
+    once: false
+    weight: 1
+    cast:
+      - contract_guard
+    tension: 8
+    beat: 紧张
+    danger: 前面已经落箭，掩体外无法保证安全。
+    shots:
+      - bg: bg.city_wall
+        say:
+          - contract_guard
+          - 前面已经落箭。这一次能救，下一次未必还来得及。
+    choice:
+      options:
+        - id: advance
+          text: 仍冒进，争取打开这条路。
+          goto: contract.death
+        - id: ask
+          text: 暂停行动，重新核清军令。
+          effects:
+            - 官 -小
+          goto: contract.plan
+        - id: withdraw
+          text: 回掩体，保留别的选择。
+          effects:
+            - 兵 -小
+          goto: contract.plan
+  - id: contract.resolution
+    name: 唯一自动结果
+    contract: 2
+    act: 0
+    type: resolution
+    period: contract
+    once: false
+    weight: 1
+    cast: []
+    tension: 7
+    beat: 揭示
+    shots:
+      - bg: bg.city_wall
+        think: 准备和执行已经落定，不再让玩家重新挑一个答案。
+    next: "@resolve"
+    exits:
+      - if: 旗标.验证决胜 && 旗标.验证侦察 && 兵 >= 42
+        goto: contract.victory
+      - if: "!(旗标.验证决胜 && 旗标.验证侦察 && 兵 >= 42)"
+        goto: contract.death
+  - id: contract.saved
+    name: 救援后的代价
+    contract: 2
+    act: 0
+    type: card
+    period: contract
+    once: false
+    weight: 1
+    cast: []
+    tension: 4
+    beat: 喘息
+    shots:
+      - bg: bg.study
+        think: 你脱离了这次危险。救援来源与机会已经扣除，并非次次都能如此。
+    next: contract.plan
+  - id: contract.warning
+    name: 验证预兆
+    contract: 2
+    act: 0
+    type: warning
+    period: contract
+    once: false
+    weight: 1
+    cast: []
+    tension: 6
+    beat: 紧张
+    shots:
+      - bg: bg.study
+        think: 这是程序验证预兆，不是新的正式剧情。
+    next: contract.plan
+endings:
+  - id: contract.stage
+    kind: stage
+    no: 0
+    name: 阶段已过，仍须继续
+    category: 阶段
+    door: 4
+    priority: 1
+    if: "false"
+    continue: contract.plan
+    shots:
+      - bg: bg.study
+      - think: 阶段进展不是整个故事的终点。
+    history: 阶段结果已经发生，继续本局。
+    historian: 尚有后事，不在此收卷。
+    why: 阶段只记经历，不发胜利、死亡或离场收藏。
+  - id: contract.victory
+    kind: victory
+    goal: 旗标.验证决胜 && 旗标.验证侦察 && 兵 >= 42
+    no: 0
+    name: 决胜收束（验证稿）
+    category: 胜利
+    door: 4
+    priority: 1
+    if: "false"
+    shots:
+      - bg: bg.study
+      - think: 本验证目标已兑现，对手的进攻被击退；故事在这里完整收束。
+    history: 验证目标已成立，本局胜利结束。
+    historian: 备之在先，成之有据。
+    why: 你先整军与侦察，再实际支付粮备，最后执行已准备的方案。
+  - id: contract.departure
+    kind: departure
+    no: 0
+    name: 与同伴远走（验证稿）
+    category: 离场
+    door: 4
+    priority: 1
+    if: "false"
+    shots:
+      - bg: bg.sea_boat
+      - think: 你交清旧日牵连，与同伴远行定居，从此不再争回皇位。
+    history: 此后相伴生活，故事完整离场。
+    historian: 此去有归处，不再问旧位。
+    why: 你明确放下原目标，选择已经交代归宿的新生活。
+  - id: contract.death
+    kind: death
+    deathConfirmed: true
+    no: 0
+    name: 险路身亡（验证稿）
+    category: 死亡
+    door: 1
+    priority: 1
+    if: "false"
+    protection:
+      - id: contract.deployed_guard
+        if: 旗标.验证护卫
+        priority: 10
+        limit: 1
+        effects:
+          - 旗标.验证护卫 = false
+        goto: contract.saved
+    rescues:
+      - id: contract.named_guard
+        person: contract_guard
+        office: 测试护卫
+        if: contract_guard.记事.职责 == "护卫"
+        priority: 1
+        limit: 1
+        costs:
+          钱: 3
+        effects:
+          - contract_guard.权 -大
+        goto: contract.saved
+    shots:
+      - bg: bg.city_wall
+      - think: 已有的保护与有限救援都无法再接住这一次。危险最终夺去了你的生命。
+    history: 险路身亡，故事在此结束。
+    historian: 机会既尽，不能以愿望续之。
+    why: 明示危险仍再次冒进，已有保护与有限救援均未能再成立。
+history: []
+rules:
+  tiers:
+    小: 3
+    中: 7
+    大: 15
+  assignments:
+    大权: 60
+  warning:
+    low: 15
+    high: 85
+    scene: contract.warning
+  relations:
+    friend: 60
+    enemy: 30
+    power: 60
+  spill:
+    ratio: 0.3333333333
+  attack:
+    hazardTurns: 2
+    consortFavor: 10
+  schedule:
+    court: 2
+    periods:
+      - court
+      - day
+      - night
+    celebrityEvery: 2
+    distinctByTurn: 10
+    distinctCount: 8
+    maxConsecutive: 2
+  activities: []
+  turns: []
+  historyBlur: 1
+  titles:
+    fallbackTemple: 验证
+    fallbackEpithet: 记
+    tags: {}
+    templeRules: []
+  contracts:
+    version: 2
+    costs:
+      paymentResources:
+        - 钱
+        - 粮备
+        - 行动
+      arrears:
+        - resource: 官
+          target: political_arrears
+  onExhausted: "@complete"

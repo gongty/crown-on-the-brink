@@ -1,0 +1,4523 @@
+{
+  "version": "forward-v3.2-dream",
+  "model_sha256": "3c492944f085f195ca4914c1664dd0d8c003189dc2bc04ecf41ffd05ab15c467",
+  "status": "artist-reviewed-ready-for-runtime-verification",
+  "scope": "145 source-node entry backgrounds; 35 terminals x 3 independent conditional still slots; selected choice result cut-ins; no engine changes",
+  "runtime_verified": false,
+  "binding_rules": {
+    "read_source_before_mutation": "after_choice 条件从 when_snapshot 缓存，再应用 add/set，最后播匹配结果；绝不拿结算后的状态重算原 guard。",
+    "terminal_shots": "每镜独立 if=源 accept；source_shot_index/text_source 精确对应源 0/1/2。结局必须 stop，不把个人离场接回主线。",
+    "asset_cases": "先满足 shot.if，再在 asset_cases 中按各自 if 选择唯一一项；没有匹配则报绑定错误，不能无条件给团圆图。",
+    "source_variants": "variants 是源正文条件；不满足时不显示对应文字，不靠资产改写事实。",
+    "entry_background_as_cut": "entry_background 可以是 cut ID，按普通背景铺满；原图内人物不另当主角；禁止退回闭门占位。",
+    "portraits": "只给已明确实名且已有对应肖像的 cast；text_only_cast 保持文字，不把通用/历史人物头像冒充未命名演员；玩家没有全身肖像。",
+    "hidden": "梦门之前无现代图；现代沈青 override 只在 X_DREAM_MORNING/FE_DREAM；清单展示需 spoiler:hidden 隐藏。",
+    "static_reuse": "静态代表场景配源正文；画中没有的动作/道具/年代靠正文说明，不宣称专属分镜或逐帧动画。"
+  },
+  "portrait_defaults": {
+    "太上皇": "face.taishang.calm",
+    "陈东": "face.chen_dong.calm",
+    "李邦彦": "face.li_bangyan.calm",
+    "李纲": "face.li_gang.calm",
+    "朱皇后": "face.zhu_hou.calm",
+    "姚平仲": "face.yao_pingzhong.calm",
+    "种师道": "face.zhong_shidao.calm",
+    "郭京": "face.guo_jing.calm",
+    "沈青": "face.shen_qing.calm"
+  },
+  "nodes": [
+    {
+      "node": "A_01",
+      "title": "皇位烫手",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "太上皇": "face.taishang.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "meta_main_worlds >= 1",
+          "text_source": "variants[0].text",
+          "source_text": "鼓声响起时，你仿佛听到手机闹铃。再听，殿里只剩催你接诏的人。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "A_02",
+      "title": "名单上有熟人",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "陈东": "face.chen_dong.calm",
+        "李邦彦": "face.li_bangyan.calm"
+      }
+    },
+    {
+      "node": "A_03",
+      "title": "同一营兵",
+      "kind": "story",
+      "entry_background": "bg.yellow_river",
+      "source_entry_background": "bg.yellow_river",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "太上皇": "face.taishang.calm"
+      }
+    },
+    {
+      "node": "A_04",
+      "title": "谁说了算",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "李纲": "face.li_gang.calm"
+      }
+    },
+    {
+      "node": "A_DRAW",
+      "title": "这一夜",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_SOUP",
+      "title": "汤快凉了",
+      "kind": "story",
+      "entry_background": "bg.harem_hou",
+      "source_entry_background": "bg.harem_hou",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "朱皇后": "face.zhu_hou.calm"
+      }
+    },
+    {
+      "node": "A_JOKE",
+      "title": "谁准你学朕的",
+      "kind": "story",
+      "entry_background": "bg.wazi",
+      "source_entry_background": "bg.wazi",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_SOLDIER",
+      "title": "一双不合脚的鞋",
+      "kind": "story",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_06",
+      "title": "他们不是来检阅的",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_07",
+      "title": "粮车到了，人不对",
+      "kind": "story",
+      "entry_background": "bg.palace_gate",
+      "source_entry_background": "bg.palace_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "audit",
+          "text_source": "variants[0].text",
+          "source_text": "新押运官就在你身边，认得原先那批车夫。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "A_GATE_CHECK",
+      "title": "门开之前",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_09",
+      "title": "两张图，两个敌营",
+      "kind": "story",
+      "entry_background": "bg.study",
+      "source_entry_background": "bg.study",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "姚平仲": "face.yao_pingzhong.calm"
+      }
+    },
+    {
+      "node": "A_10",
+      "title": "今夜要不要赢一把",
+      "kind": "story",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "姚平仲": "face.yao_pingzhong.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "not command",
+          "text_source": "variants[0].text",
+          "source_text": "两营仍各听各的命令，谁都不肯先听另一营的。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not intel",
+          "text_source": "variants[1].text",
+          "source_text": "至今没有人确认图上的主帐是真的。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "bing < 48",
+          "text_source": "variants[2].text",
+          "source_text": "军使报：队伍还没整齐，连替补的兵都凑不出。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 3,
+          "if": "retreat",
+          "text_source": "variants[3].text",
+          "source_text": "河边船夫还留着渡船，撤退时有地方接你。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "A_RAID_CHECK",
+      "title": "城外的火",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_RESULT",
+      "title": "这一仗留下了什么",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_11",
+      "title": "谁替皇帝认错",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [
+        {
+          "choice": "dismiss",
+          "to": "A_12",
+          "guard": "True",
+          "when_snapshot": "before_choice",
+          "when": "True",
+          "when_source": "exact source choice.guard",
+          "phase": "after_choice",
+          "source_reaction": "李纲把印摆正。走到门口，也没有回头。",
+          "shots": [
+            {
+              "shot_index": 0,
+              "asset": "cut.office.return_seal",
+              "render_as": "cut",
+              "if": "True",
+              "when": "True",
+              "when_snapshot": "before_choice",
+              "if_source": "cached source choice.guard before applying add/set",
+              "text_source": "choices[dismiss].reaction"
+            }
+          ],
+          "note": "李纲实际交印离任后显示；不用于 own 留任。"
+        }
+      ],
+      "runtime_verified": false,
+      "portraits": {
+        "李纲": "face.li_gang.calm",
+        "李邦彦": "face.li_bangyan.calm"
+      }
+    },
+    {
+      "node": "A_11WIN",
+      "title": "朕的功劳有多大",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [
+        {
+          "choice": "own",
+          "to": "A_12",
+          "guard": "True",
+          "when_snapshot": "before_choice",
+          "when": "True",
+          "when_source": "exact source choice.guard",
+          "phase": "after_choice",
+          "source_reaction": "你站起来，把军功簿递回去。从第一个士卒开始，名字念了很久。",
+          "shots": [
+            {
+              "shot_index": 0,
+              "asset": "cut.v3.soldier_names",
+              "render_as": "cut",
+              "if": "True",
+              "when": "True",
+              "when_snapshot": "before_choice",
+              "if_source": "cached source choice.guard before applying add/set",
+              "text_source": "choices[own].reaction"
+            }
+          ],
+          "note": "先读士卒名；只在 own 的选择结果显示，不能作所有庆功入口。"
+        }
+      ],
+      "runtime_verified": false,
+      "portraits": {
+        "李纲": "face.li_gang.calm",
+        "李邦彦": "face.li_bangyan.calm"
+      }
+    },
+    {
+      "node": "A_12",
+      "title": "门外喊的是谁",
+      "kind": "story",
+      "entry_background": "bg.palace_gate",
+      "source_entry_background": "bg.palace_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "陈东": "face.chen_dong.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "family and queen >= 70",
+          "text_source": "variants[0].text",
+          "source_text": "皇后派来的护卫守着侧廊，她怕你又独自往人堆里走。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "A_CROWD_CHECK",
+      "title": "侧廊那只手",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_13",
+      "title": "他开价，你还价",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_TREATY_CHECK",
+      "title": "谁先撑不住",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_14",
+      "title": "真的退了？",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "种师道": "face.zhong_shidao.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "not intel",
+          "text_source": "variants[0].text",
+          "source_text": "探子没有报回敌军后队的位置。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "bing < 48",
+          "text_source": "variants[1].text",
+          "source_text": "军士连日未歇，许多人撑着长矛才站得住。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "A_CHASE_CHECK",
+      "title": "旗帜往北",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "A_15",
+      "title": "城里重新卖早饭了",
+      "kind": "story",
+      "entry_background": "bg.street_snow",
+      "source_entry_background": "bg.street_snow",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "朱皇后": "face.zhu_hou.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "not paid",
+          "text_source": "variants[0].text",
+          "source_text": "巡街军士仍在等剩下的饷。他们看见你，先站直了。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not lg_active",
+          "text_source": "variants[1].text",
+          "source_text": "李纲的宅门已经关上。换将留下的事，还得接着办。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_01",
+      "title": "庆功酒还没热",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "李邦彦": "face.li_bangyan.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "father >= 60",
+          "text_source": "variants[0].text",
+          "source_text": "父亲送来一坛酒：“总算能陪你好好喝一杯了。”",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "father < 40",
+          "text_source": "variants[1].text",
+          "source_text": "父亲的贺帖只有一个印，没留一句问候。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "a_treaty",
+          "text_source": "variants[2].text",
+          "source_text": "金使把上回签过的条款又递来一份，连墨迹都替你描黑了。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_02",
+      "title": "救火要不要等圣旨",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "李邦彦": "face.li_bangyan.calm"
+      },
+      "text_only_cast": [
+        "当值主将"
+      ],
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "lg_active",
+          "text_source": "variants[0].text",
+          "source_text": "李纲站在御座前。他没有替自己辩解，只把守城图放在桌上。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not lg_active",
+          "text_source": "variants[1].text",
+          "source_text": "李纲已经离任。今日被弹劾的，是你后来用的守将。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_02F",
+      "title": "走之前的一句话",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "卸任主将"
+      ]
+    },
+    {
+      "node": "B_FATHER_INVITE",
+      "title": "父亲回来了",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "太上皇": "face.taishang.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "father_guard",
+          "text_source": "variants[0].text",
+          "source_text": "当初护送父亲离京的那营兵，仍跟在他的车后。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not father_guard",
+          "text_source": "variants[1].text",
+          "source_text": "上皇没有独立护军，宫门值守仍要认你的印。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_FATHER_SEALS",
+      "title": "两枚印",
+      "kind": "story",
+      "entry_background": "bg.longde",
+      "source_entry_background": "bg.longde",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "太上皇": "face.taishang.calm"
+      }
+    },
+    {
+      "node": "B_FATHER_CHECK",
+      "title": "谁站在门外",
+      "kind": "resolution",
+      "entry_background": "bg.palace_gate",
+      "source_entry_background": "bg.palace_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_FATHER_DAWN",
+      "title": "这回轮到你交印",
+      "kind": "story",
+      "entry_background": "bg.longde",
+      "source_entry_background": "bg.longde",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "太上皇": "face.taishang.calm"
+      }
+    },
+    {
+      "node": "B_03",
+      "title": "深夜来的一道口谕",
+      "kind": "story",
+      "entry_background": "bg.palace_corridor.night",
+      "source_entry_background": "bg.palace_corridor.night",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "内侍（虚构）",
+        "守门军士"
+      ],
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "audit",
+          "text_source": "variants[0].text",
+          "source_text": "先前查过账的宫人认出：这人的名字不在值夜册上。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "command",
+          "text_source": "variants[1].text",
+          "source_text": "宫门今晚按统一口令换岗，殿帅已经接到异常通报。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "audit",
+          "text_source": "variants[2].text",
+          "source_text": "更换过的宫门名册还在值守军士手里，陌生人进出都留有记录。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_03R",
+      "title": "偏殿门后",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_04",
+      "title": "仓门外的饭碗",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "粮官"
+      ]
+    },
+    {
+      "node": "B_05",
+      "title": "喘一口气",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_06",
+      "title": "御膳房也有退菜",
+      "kind": "story",
+      "entry_background": "bg.harem_hou",
+      "source_entry_background": "bg.harem_hou",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "朱皇后": "face.zhu_hou.calm"
+      }
+    },
+    {
+      "node": "B_07",
+      "title": "纸鸢飞过了城墙",
+      "kind": "story",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "孩子（虚构）",
+        "军士"
+      ]
+    },
+    {
+      "node": "B_08",
+      "title": "船家不肯收赏",
+      "kind": "story",
+      "entry_background": "bg.hongqiao",
+      "source_entry_background": "bg.hongqiao",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "船家（虚构）"
+      ]
+    },
+    {
+      "node": "B_09",
+      "title": "城门外又来了一批人",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "逃民（虚构）",
+        "守门官"
+      ]
+    },
+    {
+      "node": "B_11",
+      "title": "两块城墙，一支队伍",
+      "kind": "story",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "守城官"
+      ]
+    },
+    {
+      "node": "B_12",
+      "title": "军营门上的欠条",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "军官",
+        "军士（虚构）"
+      ],
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "paid",
+          "text_source": "variants[0].text",
+          "source_text": "领过钱的老兵站出来，指着煽动者：“我们这批，领过。”",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not paid",
+          "text_source": "variants[1].text",
+          "source_text": "欠条上的御笔还在。军士问：上回说的“等一等”，等到哪天？",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "lg_active and lg >= 60 and not rescue_used",
+          "text_source": "variants[2].text",
+          "source_text": "李纲赶到营门，先把自己的卫队挡在御驾前。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_12R",
+      "title": "营门后的一声喊",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [
+        {
+          "choice": "paid",
+          "to": "B_15",
+          "guard": "paid",
+          "when_snapshot": "before_resolution",
+          "when": "paid",
+          "when_source": "exact source choice.guard",
+          "phase": "after_choice",
+          "source_reaction": "“官家付过我们的饷！”老兵拦住前排，把煽动者按倒。",
+          "shots": [
+            {
+              "shot_index": 0,
+              "asset": "cut.v3.pay_settled",
+              "render_as": "cut",
+              "if": "paid",
+              "when": "paid",
+              "when_snapshot": "before_resolution",
+              "if_source": "cached source choice.guard before applying add/set",
+              "text_source": "choices[paid].reaction"
+            }
+          ],
+          "note": "paid 自动结算成功分支；确实付饷，和 saved 的未付饷护驾区分。"
+        },
+        {
+          "choice": "saved",
+          "to": "B_15",
+          "guard": "not paid and lg_active and lg >= 60 and not rescue_used",
+          "when_snapshot": "before_resolution",
+          "when": "not paid and lg_active and lg >= 60 and not rescue_used",
+          "when_source": "exact source choice.guard",
+          "phase": "after_choice",
+          "source_reaction": "李纲把你推出营门。为救御驾，他的卫队伤亡过半。",
+          "shots": [
+            {
+              "shot_index": 0,
+              "asset": "cut.v3.pay_guarded",
+              "render_as": "cut",
+              "if": "not paid and lg_active and lg >= 60 and not rescue_used",
+              "when": "not paid and lg_active and lg >= 60 and not rescue_used",
+              "when_snapshot": "before_resolution",
+              "if_source": "cached source choice.guard before applying add/set",
+              "text_source": "choices[saved].reaction"
+            }
+          ],
+          "note": "缓存 before_resolution 的救援资格；结算后 rescue_used=True 且 lg/bing 已减，不能重查而把图漏掉。"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_13",
+      "title": "今夜谁睡",
+      "kind": "story",
+      "entry_background": "bg.study.night",
+      "source_entry_background": "bg.study.night",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "朱皇后": "face.zhu_hou.calm"
+      },
+      "text_only_cast": [
+        "值夜官"
+      ]
+    },
+    {
+      "node": "B_14",
+      "title": "他们要看见你",
+      "kind": "story",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "侍卫"
+      ],
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "b_wall",
+          "text_source": "variants[0].text",
+          "source_text": "先前修过的箭棚就在左边，老兵已举盾接应。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not b_wall and bing < 55",
+          "text_source": "variants[1].text",
+          "source_text": "墙上没有完整的箭棚，举盾的人也不够。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "not b_wall and bing >= 55",
+          "text_source": "variants[2].text",
+          "source_text": "墙上箭棚缺了一段，好在一整队盾手尚未调走。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_14R",
+      "title": "城头上的那面旗",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_15",
+      "title": "六甲兵请你作证",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "郭京": "face.guo_jing.calm"
+      },
+      "text_only_cast": [
+        "守城官"
+      ]
+    },
+    {
+      "node": "B_16",
+      "title": "跑回来的人",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "郭京": "face.guo_jing.calm"
+      },
+      "text_only_cast": [
+        "败兵（虚构）"
+      ]
+    },
+    {
+      "node": "B_22",
+      "title": "要不要告诉全城",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov.night",
+      "source_entry_background": "bg.court.night",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "李邦彦": "face.li_bangyan.calm"
+      },
+      "text_only_cast": [
+        "传令官"
+      ]
+    },
+    {
+      "node": "B_17",
+      "title": "天亮前最后一令",
+      "kind": "story",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "守城官"
+      ],
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "b_wall and grain and bing >= 35",
+          "text_source": "variants[0].text",
+          "source_text": "修好的箭棚下，守军轮换完毕；军粮也已经送到。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "b_militia and min >= 50 and bing >= 35",
+          "text_source": "variants[1].text",
+          "source_text": "街坊领着守军穿过小巷，门板后藏着热饭和备用的盾。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "not (b_wall and grain and bing >= 35) and not (b_militia and min >= 50 and bing >= 35)",
+          "text_source": "variants[2].text",
+          "source_text": "守城官压低声音：防线还缺关键的一环，硬守可能守不住。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_18",
+      "title": "这一夜过去以后",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_19",
+      "title": "宫门只剩一道",
+      "kind": "story",
+      "entry_background": "bg.palace_gate.fire",
+      "source_entry_background": "bg.palace_gate.fire",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "侍卫",
+        "使者（虚构）"
+      ],
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "b_inner",
+          "text_source": "variants[0].text",
+          "source_text": "先前收回内城的守军还在。侍卫已经给你留下一条巷路。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_SAC_GATE",
+      "title": "先让他们有路可走",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_SAC_LAST",
+      "title": "最后一班船",
+      "kind": "story",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_20",
+      "title": "河边那艘大船",
+      "kind": "story",
+      "entry_background": "bg.yellow_river.night",
+      "source_entry_background": "bg.yellow_river.night",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "船工（虚构）"
+      ],
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "retreat",
+          "text_source": "variants[0].text",
+          "source_text": "船工把你拉向旁边的接应船：“这艘按说好的人数留了位置，别挤那艘大船。”",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not retreat",
+          "text_source": "variants[1].text",
+          "source_text": "岸边没有接应船，能立刻走的只有这艘已经挤满的大船。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_20R",
+      "title": "离岸的一瞬",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_PEACE_TABLE",
+      "title": "先把人名划掉",
+      "kind": "story",
+      "entry_background": "bg.jin_camp",
+      "source_entry_background": "bg.jin_camp",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_PEACE_TAX",
+      "title": "一年不止交一次的账",
+      "kind": "story",
+      "entry_background": "bg.study",
+      "source_entry_background": "bg.study",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "B_PEACE_ENFORCE",
+      "title": "十年后的同一张桌",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "command and bing >= 45",
+          "text_source": "variants[0].text",
+          "source_text": "这些年留下的军队仍有统一号令，能在渡口迎战。你手里不只剩一纸旧约。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not (command and bing >= 45)",
+          "text_source": "variants[1].text",
+          "source_text": "将领提醒：兵额未补齐，号令也未理顺。停款后若再战，京城可能守不住。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "B_PEACE_BREAK",
+      "title": "旧约之外",
+      "kind": "resolution",
+      "entry_background": "bg.yellow_river",
+      "source_entry_background": "bg.yellow_river",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_HOLD01",
+      "title": "下一年，要把仗打到哪儿",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "朱皇后": "face.zhu_hou.calm"
+      }
+    },
+    {
+      "node": "C_CAP01",
+      "title": "信比人先出去",
+      "kind": "story",
+      "entry_background": "bg.jin_camp",
+      "source_entry_background": "bg.jin_camp",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_ARMY_OFFER",
+      "title": "他们带来了钱和兵",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_ARMY_SPRING",
+      "title": "守住渡口的人",
+      "kind": "story",
+      "entry_background": "bg.study",
+      "source_entry_background": "bg.study",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_ARMY_COUNCIL",
+      "title": "诏书上的第二个名字",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "army_supervision",
+          "text_source": "variants[0].text",
+          "source_text": "你曾亲自准许诸军监督军政。今日再说只是临时借兵，已经没人肯认。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not army_supervision",
+          "text_source": "variants[1].text",
+          "source_text": "你先前没有签下监督军政的条款，仍可按临时筹饷约书清账撤权。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_CAP02",
+      "title": "名字旁边的条件",
+      "kind": "story",
+      "entry_background": "bg.jin_camp",
+      "source_entry_background": "bg.jin_camp",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_CAP_EXCHANGE",
+      "title": "名单上挤不下的人",
+      "kind": "story",
+      "entry_background": "bg.jin_camp",
+      "source_entry_background": "bg.jin_camp",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "南方使者",
+        "老吏"
+      ]
+    },
+    {
+      "node": "C_CAP_NORTH",
+      "title": "车窗朝北",
+      "kind": "story",
+      "entry_background": "bg.north_wild",
+      "source_entry_background": "bg.north_wild",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "同囚"
+      ]
+    },
+    {
+      "node": "C_CAP_WINTER",
+      "title": "今年的雪又来了",
+      "kind": "story",
+      "entry_background": "bg.north_wild",
+      "source_entry_background": "bg.north_wild",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "同囚",
+        "老吏"
+      ]
+    },
+    {
+      "node": "C_CAP03",
+      "title": "南边已有一位官家",
+      "kind": "story",
+      "entry_background": "bg.v3.south_road_pov",
+      "source_entry_background": "bg.road_south",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "p_acknowledged",
+          "text_source": "variants[0].text",
+          "source_text": "使者把那封承统书也摆出来：为了回来，你曾在上面签过字。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not p_acknowledged",
+          "text_source": "variants[1].text",
+          "source_text": "你是靠接应脱身的，没有答应过承统；可南方的新君也不是等你回来才立的。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "p_brought_captives",
+          "text_source": "variants[2].text",
+          "source_text": "随你回来的老吏也在门外。他没劝你先拿回印，只托人递来一张缺粮州县的单子。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_TWO01",
+      "title": "两道诏，堵住一条河",
+      "kind": "story",
+      "entry_background": "bg.yellow_river",
+      "source_entry_background": "bg.yellow_river",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "船夫",
+        "旧臣"
+      ]
+    },
+    {
+      "node": "C_TWO02",
+      "title": "要把刀朝哪边放",
+      "kind": "story",
+      "entry_background": "bg.yellow_river",
+      "source_entry_background": "bg.yellow_river",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "军官（虚构）",
+        "粮官"
+      ]
+    },
+    {
+      "node": "C_RETURN_FORK",
+      "title": "渡口的船，只能先往一边",
+      "kind": "story",
+      "entry_background": "bg.yellow_river",
+      "source_entry_background": "bg.yellow_river",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "联军使者",
+        "南来官员"
+      ],
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "retreat or trust_people",
+          "text_source": "variants[0].text",
+          "source_text": "以前替你引路的船工认出了旗，把几条小船也划过来。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not retreat and not trust_people",
+          "text_source": "variants[1].text",
+          "source_text": "没有旧日船工接应，只能依次征借沿岸船只。岸上的队伍还在变长。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "p_joint_front",
+          "text_source": "variants[2].text",
+          "source_text": "两边商定的军令带着各自的印。粮船第一次不用猜该听哪位官家。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_SOUTH01",
+      "title": "最后一艘官船",
+      "kind": "story",
+      "entry_background": "bg.yellow_river",
+      "source_entry_background": "bg.yellow_river",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "押船官",
+        "妇人（虚构）"
+      ]
+    },
+    {
+      "node": "C_SOUTH02",
+      "title": "宫苑先住谁",
+      "kind": "story",
+      "entry_background": "bg.v3.south_road_pov",
+      "source_entry_background": "bg.road_south",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "地方官",
+        "逃民代表（虚构）"
+      ]
+    },
+    {
+      "node": "C_SOUTH03",
+      "title": "三年后的北伐书",
+      "kind": "story",
+      "entry_background": "bg.study",
+      "source_entry_background": "bg.study",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "text_only_cast": [
+        "军使",
+        "旧都来人（虚构）"
+      ]
+    },
+    {
+      "node": "C_RETURN01",
+      "title": "借来的军队",
+      "kind": "story",
+      "entry_background": "bg.v3.south_road_pov",
+      "source_entry_background": "bg.road_south",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_WEATHER",
+      "title": "路上的一件小事",
+      "kind": "resolution",
+      "entry_background": "bg.v3.south_road_pov",
+      "source_entry_background": "bg.road_south",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_EVENT_SNOW",
+      "title": "龙袍也怕冷",
+      "kind": "story",
+      "entry_background": "bg.v3.south_road_pov.snow",
+      "source_entry_background": "bg.road_south.snow",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_EVENT_PLAY",
+      "title": "木偶也过不去",
+      "kind": "story",
+      "entry_background": "bg.wazi",
+      "source_entry_background": "bg.wazi",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_EVENT_LETTER",
+      "title": "一封没有大事的信",
+      "kind": "story",
+      "entry_background": "bg.study",
+      "source_entry_background": "bg.study",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "朱皇后": "face.zhu_hou.calm"
+      }
+    },
+    {
+      "node": "C_MEET",
+      "title": "名单上的第一个名字",
+      "kind": "story",
+      "entry_background": "bg.street_snow",
+      "source_entry_background": "bg.street_snow",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "沈青": "face.shen_qing.calm"
+      }
+    },
+    {
+      "node": "C_MONTHS",
+      "title": "补过的那只碗",
+      "kind": "story",
+      "entry_background": "bg.zhouqiao_night",
+      "source_entry_background": "bg.zhouqiao_night",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "沈青": "face.shen_qing.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "c_respect",
+          "text_source": "variants[0].text",
+          "source_text": "她还记得你让出过那间屋，见你来，先拉开了身旁的凳子。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not c_respect",
+          "text_source": "variants[1].text",
+          "source_text": "她先递来还没安置完的名单。那次没轮上的人，她一个也没漏。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_OFFER",
+      "title": "下一次，是你自己要留下",
+      "kind": "story",
+      "entry_background": "bg.study",
+      "source_entry_background": "bg.study",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_ROUTE",
+      "title": "下一封军报",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_HANDOVER",
+      "title": "最后一回盖印",
+      "kind": "story",
+      "entry_background": "bg.court_empty",
+      "source_entry_background": "bg.court_empty",
+      "when": "True",
+      "shots": [],
+      "after_choice": [
+        {
+          "choice": "handover",
+          "to": "C_TRANSFER",
+          "guard": "True",
+          "when_snapshot": "before_choice",
+          "when": "True",
+          "when_source": "exact source choice.guard",
+          "phase": "after_choice",
+          "source_reaction": "印落下。你读完家眷各自的安排，才把笔放开。",
+          "shots": [
+            {
+              "shot_index": 0,
+              "asset": "cut.office.return_seal",
+              "render_as": "cut",
+              "if": "True",
+              "when": "True",
+              "when_snapshot": "before_choice",
+              "if_source": "cached source choice.guard before applying add/set",
+              "text_source": "choices[handover].reaction"
+            }
+          ],
+          "note": "正式交印，承担继任义务；vanish 未办交接不能套此图。"
+        }
+      ],
+      "runtime_verified": false,
+      "portraits": {
+        "朱皇后": "face.zhu_hou.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "guan < 20",
+          "text_source": "variants[0].text",
+          "source_text": "几位大臣堵住门：朝里已没人肯担保你，交印后也只能住在有人看守的院子里。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "guan >= 20",
+          "text_source": "variants[1].text",
+          "source_text": "朝中仍有人替你作保。你交清兵印，往后能自己决定住在哪里。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_TRANSFER",
+      "title": "印交出去之后",
+      "kind": "resolution",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_AFTER",
+      "title": "三年后，没有人叫官家",
+      "kind": "story",
+      "entry_background": "bg.zhouqiao_night",
+      "source_entry_background": "bg.zhouqiao_night",
+      "when": "True",
+      "shots": [],
+      "after_choice": [
+        {
+          "choice": "visit",
+          "to": "C_CONSENT",
+          "guard": "c_respect and c_confide",
+          "when_snapshot": "before_choice",
+          "when": "c_respect and c_confide",
+          "when_source": "exact source choice.guard",
+          "phase": "after_choice",
+          "source_reaction": "赴约前，你先与皇后谈清今后的生活。她选择留京照顾孩子：“我不跟你走，也不会等着你的诏。”你们约定各自生活，抚养和探望孩子的事仍由你承担。她说完自己的打算，你才寄出赴约的信。",
+          "shots": [
+            {
+              "shot_index": 0,
+              "asset": "cut.v3.family_farewell",
+              "render_as": "cut",
+              "if": "c_respect and c_confide",
+              "when": "c_respect and c_confide",
+              "when_snapshot": "before_choice",
+              "if_source": "cached source choice.guard before applying add/set",
+              "text_source": "choices[visit].reaction"
+            }
+          ],
+          "note": "先平等谈清旧家庭安排，再赴约；不是皇后跪求/为新恋情背书。"
+        }
+      ],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "c_respect and c_confide",
+          "text_source": "variants[0].text",
+          "source_text": "三年里，你们通信。她退回贵重的赏钱，却寄来屋顶漏雨的图；你去帮过两回，第一次还把瓦放反了。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_HIDE",
+      "title": "要不要说出名字",
+      "kind": "story",
+      "entry_background": "bg.v3.south_road_pov",
+      "source_entry_background": "bg.road_south",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_CONSENT",
+      "title": "她没有跪下",
+      "kind": "story",
+      "entry_background": "bg.zhouqiao_night",
+      "source_entry_background": "bg.zhouqiao_night",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "沈青": "face.shen_qing.calm"
+      },
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "meta_main_worlds >= 3",
+          "text_source": "variants[0].text",
+          "source_text": "这些夜里，你又梦见现代家里的门。她说她也梦见了：门边两双鞋，窗外没有城墙。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_SEA",
+      "title": "船票上没有皇帝",
+      "kind": "story",
+      "entry_background": "bg.sea_boat",
+      "source_entry_background": "bg.sea_boat",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "X_DREAM_GATE",
+      "title": "这次一起回家",
+      "kind": "story",
+      "entry_background": "cut.v3.dream_door",
+      "source_entry_background": "bg.zhouqiao_night",
+      "when": "meta_main_worlds >= 3 and c_respect and c_confide",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "沈青": "face.shen_qing.calm"
+      },
+      "spoiler": "hidden",
+      "unlock_from": {
+        "node": "C_CONSENT",
+        "choice": "home_together",
+        "guard": "meta_main_worlds >= 3 and c_respect and c_confide"
+      },
+      "entry_override_note": "现代标志仅本隐藏节点开始显示；modern_together 此时还未置真，不能拿它锁住梦门。"
+    },
+    {
+      "node": "X_DREAM_MORNING",
+      "title": "又回来了",
+      "kind": "story",
+      "entry_background": "bg.v3.modern_home",
+      "source_entry_background": "bg.zhouqiao_night",
+      "when": "modern_together",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "沈青": "face.shen_qing_modern.calm"
+      },
+      "portrait_overrides": {
+        "沈青": "face.shen_qing_modern.calm"
+      },
+      "spoiler": "hidden",
+      "entered_by": {
+        "node": "X_DREAM_GATE",
+        "choice": "wake",
+        "source_guard": "True",
+        "source_set": {
+          "modern_together": true
+        }
+      }
+    },
+    {
+      "node": "C_HOLD02",
+      "title": "一城人不能一直守城",
+      "kind": "story",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_ATTACK01",
+      "title": "胜仗最怕走得太快",
+      "kind": "story",
+      "entry_background": "bg.battle_snow",
+      "source_entry_background": "bg.battle_snow",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "shen < 40",
+          "text_source": "variants[0].text",
+          "source_text": "军医直说：您一路的旧伤和病已撑不住整场亲征。即使粮到了，再打下去也得交印让人接手。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "shen >= 40",
+          "text_source": "variants[1].text",
+          "source_text": "军医看过你的伤情：目前还能随军，但别把护粮和整队都当作可以省掉的时间。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_RETURN02",
+      "title": "离东京只剩一程",
+      "kind": "story",
+      "entry_background": "bg.v3.south_road_pov",
+      "source_entry_background": "bg.road_south",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "c_shared",
+          "text_source": "variants[0].text",
+          "source_text": "共同议事的名单上有你亲手按下的印。将领说：“一道下令，也一道担责。”",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not c_shared",
+          "text_source": "variants[1].text",
+          "source_text": "拿过内库军饷的将领等着你的军令：“这仗听您的。打完放军队回营，不扣人。”",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_BETRAY_RESULT",
+      "title": "帐外是谁的兵",
+      "kind": "resolution",
+      "entry_background": "bg.v3.south_road_pov",
+      "source_entry_background": "bg.road_south",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_HOLD03",
+      "title": "金使说，不必带兵",
+      "kind": "story",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "lg_active and lg >= 60",
+          "text_source": "variants[0].text",
+          "source_text": "李纲把护卫名单推回你面前：“您曾替臣挡过弹章，这回请听臣一句，别把命押在他的客气上。”",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not lg_active",
+          "text_source": "variants[1].text",
+          "source_text": "接任的将领没有提旧人，只把林中伏兵的位置指给你看。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_ATTACK02",
+      "title": "帅旗只带了几十骑",
+      "kind": "story",
+      "entry_background": "bg.battle_snow",
+      "source_entry_background": "bg.battle_snow",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "command and bing >= 55",
+          "text_source": "variants[0].text",
+          "source_text": "前锋回来报：两翼已到位，退路留有人守。那支断后队还没发现。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not (command and bing >= 55)",
+          "text_source": "variants[1].text",
+          "source_text": "前锋回来报：两翼还没跟上。帅旗旁有暗路，贸然追去，可能被反包。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_RETURN03",
+      "title": "开门的人也有家",
+      "kind": "story",
+      "entry_background": "bg.city_wall.night",
+      "source_entry_background": "bg.city_wall.night",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "bing < 52",
+          "text_source": "variants[0].text",
+          "source_text": "将领提醒：现在这些兵不够正面破门。若不先把内应的母亲接出，就只能放弃这一战。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_FLAG_RESULT",
+      "title": "旗子倒向哪边",
+      "kind": "resolution",
+      "entry_background": "bg.battle_snow",
+      "source_entry_background": "bg.battle_snow",
+      "when": "True",
+      "shots": [],
+      "after_choice": [
+        {
+          "choice": "win",
+          "to": "C_ATTACK03",
+          "guard": "command and bing >= 55",
+          "when_snapshot": "before_resolution",
+          "when": "command and bing >= 55",
+          "when_source": "exact source choice.guard",
+          "phase": "after_choice",
+          "source_reaction": "两翼同时收拢。副将被俘，他守着的粮队也没能逃开。",
+          "shots": [
+            {
+              "shot_index": 0,
+              "asset": "cut.v3.flank_closed",
+              "render_as": "cut",
+              "if": "command and bing >= 55",
+              "when": "command and bing >= 55",
+              "when_snapshot": "before_resolution",
+              "if_source": "cached source choice.guard before applying add/set",
+              "text_source": "choices[win].reaction"
+            }
+          ],
+          "note": "缓存结算前 command and bing>=55；赢后 bing-7 可能低于55，不得重查丢掉成功演出。"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_HOLD04",
+      "title": "村子起火了",
+      "kind": "story",
+      "entry_background": "bg.city_wall.fire",
+      "source_entry_background": "bg.city_wall.fire",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "not (bing >= 45 or (command and paid))",
+          "text_source": "variants[0].text",
+          "source_text": "守将压低声音：“现在出城，军阵很可能撑不住。城门里面还能守。”",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "bing >= 45 or (command and paid)",
+          "text_source": "variants[1].text",
+          "source_text": "守将点过能出战的人：“够接一场，但谁也不敢说没有伤亡。”",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_ATTACK03",
+      "title": "他们终于背对着你",
+      "kind": "story",
+      "entry_background": "bg.yellow_river",
+      "source_entry_background": "bg.yellow_river",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_RETURN04",
+      "title": "你认得这座城，箭不认得",
+      "kind": "story",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "not c_gate and bing < 55",
+          "text_source": "variants[0].text",
+          "source_text": "小门没有开。将领直说：眼下兵力强攻必败；若撤军，联军会另立领头的人，不再奉你为帝。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_HOLD_RESULT",
+      "title": "北门外",
+      "kind": "resolution",
+      "entry_background": "bg.battle_snow",
+      "source_entry_background": "bg.battle_snow",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_ATTACK_RESULT",
+      "title": "停下之后，才知道赢没赢",
+      "kind": "resolution",
+      "entry_background": "bg.yellow_river",
+      "source_entry_background": "bg.yellow_river",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_RETURN_RESULT",
+      "title": "门开在哪一边",
+      "kind": "resolution",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [
+        {
+          "choice": "win",
+          "to": "C_RETURN05",
+          "guard": "c_ally and (c_gate or (bing >= 55 and command))",
+          "when_snapshot": "before_resolution",
+          "when": "c_ally and (c_gate or (bing >= 55 and command))",
+          "when_source": "exact source choice.guard",
+          "phase": "after_choice",
+          "source_reaction": "联军越过城门，报信的人终于喊出“进城了”。",
+          "shots": [
+            {
+              "shot_index": 0,
+              "asset": "cut.return.open_gate",
+              "render_as": "cut",
+              "if": "c_ally and (c_gate or (bing >= 55 and command))",
+              "when": "c_ally and (c_gate or (bing >= 55 and command))",
+              "when_snapshot": "before_resolution",
+              "if_source": "cached source choice.guard before applying add/set",
+              "text_source": "choices[win].reaction"
+            }
+          ],
+          "note": "只在 win 判定完成后换开放城门；fall 与选择前保留原背景，不提前庆祝。"
+        }
+      ],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_SUPPLYCRISIS",
+      "title": "这次退，得把帅印留下",
+      "kind": "story",
+      "entry_background": "bg.battle_snow",
+      "source_entry_background": "bg.battle_snow",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "not c_supplyline",
+          "text_source": "variants[0].text",
+          "source_text": "你先前带走了护粮的兵。旧粮早已吃完，留在泥路上的车一直没来。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "c_supplyline and bing < 30",
+          "text_source": "variants[1].text",
+          "source_text": "护粮队还在，但前线已经凑不出足够的人接应。粮车停在远处，不敢再走。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "c_supplyline and bing >= 30 and shen < 40",
+          "text_source": "variants[2].text",
+          "source_text": "你几夜高热，连军报都认不清。没有人敢接过你的帅印，后队仍停着等令。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 3,
+          "if": "min >= 60",
+          "text_source": "variants[3].text",
+          "source_text": "附近百姓送来一小批粮，够你们撤回去。继续守在这里，仍撑不住。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_HOLD05",
+      "title": "城门终于不用再钉死",
+      "kind": "story",
+      "entry_background": "cut.v3.city_ordinary",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "entry_override_note": "敌军已经退出、城门可打开；不用旧闭门城背景；新图为日常延续代表。",
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "c_rotation",
+          "text_source": "variants[0].text",
+          "source_text": "轮休的老兵提前把新粮运进城。金骑在空田里兜了几日，自己的粮先不够了。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not c_rotation",
+          "text_source": "variants[1].text",
+          "source_text": "留守的军队始终把住渡口，截住了敌营补粮的船。金骑烧了村舍，却养不起大军。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "C_ATTACK04",
+      "title": "这回，他们来求见",
+      "kind": "story",
+      "entry_background": "bg.v3.court_pov",
+      "source_entry_background": "bg.court",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false
+    },
+    {
+      "node": "C_RETURN05",
+      "title": "收复的城，还得还给人",
+      "kind": "story",
+      "entry_background": "cut.return.open_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "True",
+      "shots": [],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portraits": {
+        "沈青": "face.shen_qing.calm"
+      },
+      "entry_override_note": "联军已入城；不可退回旧闭门城门。"
+    },
+    {
+      "node": "BE_A_GATE",
+      "title": "门开以后",
+      "kind": "BE",
+      "entry_background": "bg.palace_gate.night",
+      "source_entry_background": "bg.palace_gate",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.palace_gate.night",
+          "render_as": "bg",
+          "prop": "prop.lantern",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "半开的宫门，灯落在门槛内。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.palace_gate",
+          "render_as": "bg",
+          "representation_note": "仅地点承接；粮袋与伪装事件由源文本说明，图中不宣称已有专属粮袋细节。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "门外粮袋散开，露出的不是伤员。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.palace_gate.day",
+          "render_as": "bg",
+          "representation_note": "没有弯腰牌专属画；字幕说明拾牌，不以玉玺冒充腰牌。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "天亮后，守门人捡起一枚压弯的腰牌。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_A_RAID",
+      "title": "旗没回来",
+      "kind": "BE",
+      "entry_background": "bg.yellow_river.night",
+      "source_entry_background": "bg.yellow_river",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.yellow_river.night",
+          "render_as": "bg",
+          "representation_note": "河面象征失联；半旗杆未单独生成。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "黑水里漂着半截旗杆。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.ending.river_pass",
+          "render_as": "cut",
+          "representation_note": "事故后的无人舟渡静态意象；无主角挣扎或救援。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "空船撞上岸边，缆绳没人在接。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_wall.day",
+          "render_as": "bg",
+          "representation_note": "以城头空等承接，旗未归由源文本确认。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "城头天亮了，仍等不到你的旗。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_A_CROWD",
+      "title": "门前最后一步",
+      "kind": "BE",
+      "entry_background": "bg.palace_gate.night",
+      "source_entry_background": "bg.palace_gate",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.palace_gate.night",
+          "render_as": "bg",
+          "prop": "prop.lantern",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "侧门开着，灯笼滚到石阶下。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.palace_gate",
+          "render_as": "bg",
+          "representation_note": "空架子没有专属图，不拿医疗箱冒充抬架。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "一只抬伤员的空架子歪在墙边。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.ending.crowd_lantern",
+          "render_as": "cut",
+          "representation_note": "已确认死亡后，收灯末态可复用。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "人群散开后，门前再没人喊万岁。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_A_CHASE",
+      "title": "追过了头",
+      "kind": "BE",
+      "entry_background": "bg.battle_snow",
+      "source_entry_background": "bg.battle_snow",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.battle_snow",
+          "render_as": "bg",
+          "representation_note": "仅远处旗阵，具体反包行动由文本说明。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "远处撤军的旗停住，新的旗从林后升起。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_wall",
+          "render_as": "bg",
+          "representation_note": "只有城头地点，没有军鼓手专图；不用登闻鼓冒充军鼓。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "回城的鼓手抱着鼓，没带回鼓槌。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_gate.night",
+          "render_as": "bg",
+          "representation_note": "门关闭为死亡后空等末态，不能放成功节点。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "城门开了一整夜，最后还是关了。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_B01",
+      "title": "偏殿没有灯",
+      "kind": "BE",
+      "entry_background": "bg.palace_corridor.night",
+      "source_entry_background": "bg.court_empty",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.palace_corridor.night",
+          "render_as": "bg",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "宫门在空廊尽头合上。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.palace_gate.night",
+          "render_as": "bg",
+          "prop": "prop.lantern",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "御前灯笼被留在门外，灯还亮着。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.study.day",
+          "render_as": "bg",
+          "prop": "prop.memorial",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "天明，值夜册上只有一道无人签收的口谕。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_B02",
+      "title": "欠条上的御笔",
+      "kind": "BE",
+      "entry_background": "cut.ending.pay_mutiny",
+      "source_entry_background": "bg.court_empty",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.city_gate",
+          "render_as": "bg",
+          "prop": "prop.memorial",
+          "representation_note": "欠条无可读字，御笔欠饷由文本叠加。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "一张御笔欠条被钉在营门上。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_gate",
+          "render_as": "bg",
+          "representation_note": "御辇未有精确专图，不添加皇帝全身替代。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "空御辇横在门洞，车帘被风吹起。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.ending.pay_mutiny",
+          "render_as": "cut",
+          "representation_note": "死亡已成立，复用空饷袋/御笔末态；不是 paid/saved 的图。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "军士拨开泥水，捡起散落的铜钱。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_B03",
+      "title": "旗还没有立稳",
+      "kind": "BE",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.court_empty",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.city_wall",
+          "render_as": "bg",
+          "prop": "prop.tiger_tally",
+          "representation_note": "军令失去回应的物件象征，冠带未单独生成。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "石阶上留下被踩落的冠带。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_wall.night",
+          "render_as": "bg",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "旗手独自撑住倾斜的旗杆。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_wall.day",
+          "render_as": "bg",
+          "representation_note": "城下空等；不画主角从墙上走下。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "墙下等候的人让出一条路，没有人走下来。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_B04",
+      "title": "六甲没有回头",
+      "kind": "BE",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.court_empty",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.city_gate",
+          "render_as": "bg",
+          "prop": "prop.scroll",
+          "representation_note": "无字纸卷象征失效符令，不能程序叠假史料符咒。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "一张符纸贴在湿泥里。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_gate",
+          "render_as": "bg",
+          "representation_note": "城门地点承接；溃散伸手行动由文字说明。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "城门内的守军伸着手，够不到溃散的人。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.street_snow",
+          "render_as": "bg",
+          "representation_note": "无主御马未有精确专图；用归城街景承接，不冒称马匹已画。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "无人的御马被牵回城里。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_B05",
+      "title": "最后一座宫殿",
+      "kind": "BE",
+      "entry_background": "bg.palace_gate.fire",
+      "source_entry_background": "bg.court_empty",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.palace_gate.fire",
+          "render_as": "bg",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "侍卫丢下的旧衣被火光照亮。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.court_empty.fire",
+          "render_as": "bg",
+          "representation_note": "空殿无主角人身；靴的特写未生成。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "空御座前，一只靴停在烟里。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.palace_gate.fire",
+          "render_as": "bg",
+          "representation_note": "复用火后地点象征；殿基重构与逃难过路用正文，不另造动画。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "天明只余殿基，逃难的人从旁走过。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_B06",
+      "title": "满船都是归路",
+      "kind": "BE",
+      "entry_background": "cut.ending.river_pass",
+      "source_entry_background": "bg.court_empty",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.yellow_river.night",
+          "render_as": "bg",
+          "representation_note": "渡口地点；跳板滑落由正文说明。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "跳板从船沿滑落。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.yellow_river.night",
+          "render_as": "bg",
+          "prop": "prop.lantern",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "水面只剩一个打转的灯笼。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.ending.river_pass",
+          "render_as": "cut",
+          "representation_note": "空覆舟/断缆末态；重新按人数排队是字幕叙事，图不伪装已画队伍。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "岸上队伍退后，重新按人数上船。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_C_CAP",
+      "title": "明天的名单",
+      "kind": "BE",
+      "entry_background": "bg.jin_camp",
+      "source_entry_background": "bg.jin_camp",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.jin_camp",
+          "render_as": "bg",
+          "prop": "prop.envoy_list",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "守卫合上换俘册，压住刚划掉的名字。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.jin_camp",
+          "render_as": "bg",
+          "representation_note": "空席与队伍经过未有专图，使用受拘地点承接。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "清晨，队伍经过你昨夜坐过的空草席。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.jin_camp",
+          "render_as": "bg",
+          "representation_note": "门关闭仍受拘；不使用获救后开放城门图。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "同囚回头，门已经关上。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_C_ENVOY",
+      "title": "一人来就够了",
+      "kind": "BE",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.city_gate",
+          "render_as": "bg",
+          "prop": "prop.horsewhip",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "空马立在城门下，缰绳拖在地上。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_wall",
+          "render_as": "bg",
+          "prop": "prop.horsewhip",
+          "representation_note": "缰具象征空马，未生成扶鞍动作。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "守将伸手扶住马鞍，没有开口。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.jin_camp",
+          "render_as": "bg",
+          "prop": "prop.envoy_list",
+          "representation_note": "谈判地点/文书象征；两杯冷茶细节由正文。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "谈判桌上，两杯茶都冷了。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_C_FIELD",
+      "title": "最后一辆车",
+      "kind": "BE",
+      "entry_background": "bg.city_gate",
+      "source_entry_background": "bg.city_wall",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.city_gate",
+          "render_as": "bg",
+          "representation_note": "城门地点，满载撤民车专图尚无。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "载满人的车停在门洞里。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_wall",
+          "render_as": "bg",
+          "prop": "prop.envoy_list",
+          "representation_note": "名单象征清点人数，守将回望由正文。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "守将数完人数，回头望向城外。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_gate.night",
+          "render_as": "bg",
+          "representation_note": "最终落闩、主角旗缺席由源文本确认。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "城门落闩，少了那面御旗。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_C_FLAG",
+      "title": "最值钱的诱饵",
+      "kind": "BE",
+      "entry_background": "bg.battle_snow",
+      "source_entry_background": "bg.battle_snow",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.battle_snow",
+          "render_as": "bg",
+          "representation_note": "诱饵旗卷起未有专图，保持失败后的雪路地点。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "诱敌的帅旗被卷起，随手放进车厢。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.battle_snow",
+          "render_as": "bg",
+          "prop": "prop.tiger_tally",
+          "representation_note": "失去统御的物件象征，不复用两翼成功夹击图。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "一面御旗随后扔在旁边。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.battle_snow",
+          "render_as": "bg",
+          "prop": "prop.horsewhip",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "山路上只剩散落的马鞍。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_C_RIVER",
+      "title": "赢过头了",
+      "kind": "BE",
+      "entry_background": "bg.yellow_river",
+      "source_entry_background": "bg.yellow_river",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.yellow_river",
+          "render_as": "bg",
+          "representation_note": "未有独立收兵锣，不拿开市锣图冒充。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "收兵的锣落在河岸。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.yellow_river",
+          "render_as": "bg",
+          "prop": "prop.tiger_tally",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "旗手朝对岸举了很久的旗，等不到回应。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.yellow_river",
+          "render_as": "bg",
+          "prop": "prop.scroll",
+          "representation_note": "无字物件象征捷报；不得把写有捷字的牌伪造成已画。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "水面漂过一块写着“捷”的木牌。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_C_HUNGER",
+      "title": "等不到的明天",
+      "kind": "BE",
+      "entry_background": "bg.jin_camp",
+      "source_entry_background": "bg.yellow_river",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.jin_camp",
+          "render_as": "bg",
+          "prop": "prop.medicine_box",
+          "representation_note": "只复用营帐地点和药箱，空锅冷药用文本说明。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "空锅和冷药摆在帐前，火已经熄了。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.study",
+          "render_as": "bg",
+          "prop": "prop.scroll",
+          "representation_note": "未盖印的撤令由正文，不添加盖印成功。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "写好的撤军令没有盖印，压在求援信下面。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.jin_camp",
+          "render_as": "bg",
+          "representation_note": "死亡后空帐意象；不是现代/宫殿。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "清晨，御帐外只剩倒伏的旗杆。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_C_MUTINY",
+      "title": "帐外不称臣",
+      "kind": "BE",
+      "entry_background": "bg.jin_camp.night",
+      "source_entry_background": "bg.road_south",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.jin_camp.night",
+          "render_as": "bg",
+          "prop": "prop.tiger_tally",
+          "representation_note": "夜间军帐代表场景，不用明亮南行队伍；两枚将印由正文说明，现成虎符仅作军权物件。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "两枚并放的将印，一枚被取走。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.jin_camp.night",
+          "render_as": "bg",
+          "representation_note": "夜间军营地点象征帐外军靴，不使用救援成功图。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "帐外的军靴停在门帘前。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.jin_camp.night",
+          "render_as": "bg",
+          "prop": "prop.scroll",
+          "representation_note": "未发出的收权令用无字文书象征；不用旧盟约刑令图增加本版没有的执行细节。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "未发出的收权诏压在翻倒的灯下。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_C_GATE",
+      "title": "箭认得龙袍",
+      "kind": "BE",
+      "entry_background": "bg.city_wall",
+      "source_entry_background": "bg.city_wall",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.city_wall",
+          "render_as": "bg",
+          "prop": "prop.arrow",
+          "representation_note": "箭/墙象征；不展示完整黄袍皇帝。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "龙袍的一角挂在军阵前的木障上。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_wall",
+          "render_as": "bg",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "城头有人放下弓，远处没有欢呼。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_gate",
+          "render_as": "bg",
+          "representation_note": "熟悉街道仍隔门，无胜利欢呼或军队入城。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "那条熟悉的街仍隔着一道门。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "BE_C_SIEGE",
+      "title": "门外的故人",
+      "kind": "BE",
+      "entry_background": "bg.city_wall.night",
+      "source_entry_background": "bg.city_gate",
+      "when": "dead",
+      "shots": [
+        {
+          "asset": "bg.city_wall.night",
+          "render_as": "bg",
+          "representation_note": "未接应由正文；不叠亮灯道具，以免和始终未点灯相反。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "一盏准备接应的灯，始终没有点燃。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.study",
+          "render_as": "bg",
+          "prop": "prop.memorial",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "中军帐前的地图被风翻起。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.city_gate",
+          "render_as": "bg",
+          "representation_note": "敌军出门由正文；禁止复用友军归城成功图。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "城门清晨打开，走出来的却是敌军。",
+          "when": "dead",
+          "if": "dead",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead",
+      "ending_scope": "branch",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "LE_C_RETIRED",
+      "title": "没有下一封奏章",
+      "kind": "LE",
+      "entry_background": "cut.departure.retreat_house",
+      "source_entry_background": "bg.zhouqiao_night",
+      "when": "not dead and not captive and c_departure == 'retired'",
+      "shots": [
+        {
+          "asset": "cut.departure.retreat_house",
+          "render_as": "cut",
+          "representation_note": "普通小院象征离开政务；草帽专图无。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "门边挂着普通人的草帽。",
+          "when": "not dead and not captive and c_departure == 'retired'",
+          "if": "not dead and not captive and c_departure == 'retired'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.departure.retreat_house",
+          "render_as": "cut",
+          "representation_note": "静态普通生活，无奏章；账簿/凉茶由文本说明。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "桌上只有账簿和半碗凉茶，没有奏章。",
+          "when": "not dead and not captive and c_departure == 'retired'",
+          "if": "not dead and not captive and c_departure == 'retired'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.departure.retreat_house",
+          "render_as": "cut",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "多年后，一扇小门照常在清晨打开。",
+          "when": "not dead and not captive and c_departure == 'retired'",
+          "if": "not dead and not captive and c_departure == 'retired'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and not captive and c_departure == 'retired'",
+      "ending_scope": "personal",
+      "valence": "mixed",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。",
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "seen('C_CONSENT')",
+          "text_source": "variants[0].text",
+          "source_text": "你仍按约探望和照顾孩子，与沈青保持朋友关系。没有一次选择能把别人自动放回原来的位置。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "LE_C_LOVE",
+      "title": "两个人的一张桌",
+      "kind": "LE",
+      "entry_background": "cut.departure.shop_life",
+      "source_entry_background": "bg.zhouqiao_night",
+      "when": "not dead and not captive and c_departure == 'love' and c_respect and c_confide and c_abdicated",
+      "shots": [
+        {
+          "asset": "cut.departure.shop_life",
+          "render_as": "cut",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "两只旧碗放在一张桌上。",
+          "when": "not dead and not captive and c_departure == 'love' and c_respect and c_confide and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'love' and c_respect and c_confide and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.departure.shop_life",
+          "render_as": "cut",
+          "representation_note": "共同谋生静态构图；买菜与修门动作由正文给出。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "她提着菜回来，你弯腰修好松动的门槛。",
+          "when": "not dead and not captive and c_departure == 'love' and c_respect and c_confide and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'love' and c_respect and c_confide and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.departure.shop_life",
+          "render_as": "cut",
+          "representation_note": "同人共同生活意象；暮年听雨只由时间字幕表达，不声称已有老年版逐镜动画。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "暮年，两个人坐在关了门的铺子前听雨。",
+          "when": "not dead and not captive and c_departure == 'love' and c_respect and c_confide and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'love' and c_respect and c_confide and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and not captive and c_departure == 'love' and c_respect and c_confide and c_abdicated",
+      "ending_scope": "personal",
+      "valence": "mixed",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "LE_C_OVERSEAS",
+      "title": "海那边也要吃饭",
+      "kind": "LE",
+      "entry_background": "cut.departure.overseas_port",
+      "source_entry_background": "bg.sea_boat",
+      "when": "not dead and not captive and c_departure == 'overseas' and c_abdicated",
+      "shots": [
+        {
+          "asset": "bg.sea_boat",
+          "render_as": "bg",
+          "prop": "prop.envoy_list",
+          "representation_note": "无字名册图标；名字由程序文字层给出。",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "船册上只有一个普通姓名。",
+          "when": "not dead and not captive and c_departure == 'overseas' and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'overseas' and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.departure.overseas_port",
+          "render_as": "cut",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "码头的货箱旁，你借着天光核账。",
+          "when": "not dead and not captive and c_departure == 'overseas' and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'overseas' and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.departure.overseas_port",
+          "render_as": "cut",
+          "representation_note": "已到海外的长期生活；晚年望北由字幕承接。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "头发白了以后，你仍会走到海边看北方。",
+          "when": "not dead and not captive and c_departure == 'overseas' and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'overseas' and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and not captive and c_departure == 'overseas' and c_abdicated",
+      "ending_scope": "personal",
+      "valence": "mixed",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "LE_C_BEGGAR",
+      "title": "无人识得旧姓名",
+      "kind": "LE",
+      "entry_background": "cut.departure.bridge_old_age",
+      "source_entry_background": "bg.road_south",
+      "when": "not dead and not captive and c_departure == 'beggar' and c_abdicated",
+      "shots": [
+        {
+          "asset": "bg.v3.south_road_pov",
+          "render_as": "bg",
+          "prop": "prop.memorial",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "赈济册的姓名栏被擦成灰色。",
+          "when": "not dead and not captive and c_departure == 'beggar' and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'beggar' and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.v3.south_road_pov",
+          "render_as": "bg",
+          "representation_note": "长年迁徙由字幕；无主角全身车驾。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "几次迁徙后，行李只剩一个破布包。",
+          "when": "not dead and not captive and c_departure == 'beggar' and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'beggar' and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.departure.bridge_old_age",
+          "render_as": "cut",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "老人在檐下接过热粥，街上的人没有回头。",
+          "when": "not dead and not captive and c_departure == 'beggar' and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'beggar' and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and not captive and c_departure == 'beggar' and c_abdicated",
+      "ending_scope": "personal",
+      "valence": "mixed",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "LE_C_EXILE",
+      "title": "活着，别再回来",
+      "kind": "LE",
+      "entry_background": "cut.departure.retreat_house",
+      "source_entry_background": "bg.longde",
+      "when": "not dead and not captive and c_departure == 'exile' and c_abdicated",
+      "shots": [
+        {
+          "asset": "bg.longde",
+          "render_as": "bg",
+          "prop": "prop.envoy_list",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "接收官把你的名字写进居住名册。",
+          "when": "not dead and not captive and c_departure == 'exile' and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'exile' and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.departure.retreat_house",
+          "render_as": "cut",
+          "representation_note": "只承接受限居住的普通小院，守卫换季由正文说明；不能声称完全自由。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "门外的守卫随季节换了几轮。",
+          "when": "not dead and not captive and c_departure == 'exile' and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'exile' and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.departure.retreat_house",
+          "render_as": "cut",
+          "prop": "prop.secret_letter",
+          "representation_note": "只复用院居与家书物件；白发/交信动作不在原画中。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "白发的你折好家信，交给另一个陌生守卫。",
+          "when": "not dead and not captive and c_departure == 'exile' and c_abdicated",
+          "if": "not dead and not captive and c_departure == 'exile' and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and not captive and c_departure == 'exile' and c_abdicated",
+      "ending_scope": "personal",
+      "valence": "mixed",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "TE_C_HOLD",
+      "title": "靖康未至",
+      "kind": "TE",
+      "entry_background": "cut.v3.city_ordinary",
+      "source_entry_background": "bg.city_gate",
+      "when": "not dead and city_saved and c_border_safe and c_victory == 'hold'",
+      "shots": [
+        {
+          "asset": "cut.v3.city_ordinary",
+          "render_as": "cut",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "封过城门的木板被拆下，改成市场的货架。",
+          "when": "not dead and city_saved and c_border_safe and c_victory == 'hold'",
+          "if": "not dead and city_saved and c_border_safe and c_victory == 'hold'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.city_ordinary",
+          "render_as": "cut",
+          "representation_note": "普通城市与农产延续的代表静帧；轮值军从田边经过由正文说明。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "秋收时，轮值的军队从田边走过。",
+          "when": "not dead and city_saved and c_border_safe and c_victory == 'hold'",
+          "if": "not dead and city_saved and c_border_safe and c_victory == 'hold'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.shishu_desk",
+          "render_as": "bg",
+          "prop": "prop.history_book",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "史书翻到靖康那页，北去的旧字被新墨盖住。",
+          "when": "not dead and city_saved and c_border_safe and c_victory == 'hold'",
+          "if": "not dead and city_saved and c_border_safe and c_victory == 'hold'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and city_saved and c_border_safe and c_victory == 'hold'",
+      "ending_scope": "main",
+      "valence": "good",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。",
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "names_first",
+          "text_source": "variants[0].text",
+          "source_text": "城门旁立起了一块碑。最上面刻的不是皇帝，是那年没有等到报捷的士卒。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not names_first",
+          "text_source": "variants[1].text",
+          "source_text": "孩子问起城门为何修过，老人便从当年守门的人讲起。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "c_shared",
+          "text_source": "variants[2].text",
+          "source_text": "地方和商户留在议税桌上。此后新增军费，不能再靠你一道诏就从他们口袋里拿走。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 3,
+          "if": "c_abandoned_village",
+          "text_source": "variants[3].text",
+          "source_text": "北村的房子后来重盖了。旗手把母亲的名字刻在碑上；你保住了国家，却不能让每一家都团圆。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "TE_C_RETURN",
+      "title": "失而复得",
+      "kind": "TE",
+      "entry_background": "cut.return.open_gate",
+      "source_entry_background": "bg.city_gate",
+      "when": "not dead and city_saved and c_recaptured and c_settled and c_victory == 'return'",
+      "shots": [
+        {
+          "asset": "cut.return.open_gate",
+          "render_as": "cut",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "百姓拿着旧钥匙，推开修好的家门。",
+          "when": "not dead and city_saved and c_recaptured and c_settled and c_victory == 'return'",
+          "if": "not dead and city_saved and c_recaptured and c_settled and c_victory == 'return'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.return.open_gate",
+          "render_as": "cut",
+          "representation_note": "已收复，军队护民而非出城逃难；墙外扎营/重新开市由正文说明。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "军队在墙外扎营，城内重新开市。",
+          "when": "not dead and city_saved and c_recaptured and c_settled and c_victory == 'return'",
+          "if": "not dead and city_saved and c_recaptured and c_settled and c_victory == 'return'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset_cases": [
+            {
+              "variant_if": "c_gate",
+              "asset": "cut.v3.reunion_gate",
+              "render_as": "cut",
+              "semantic_note": "母亲已救出，成年儿子修门闩。",
+              "if": "(not dead and city_saved and c_recaptured and c_settled and c_victory == 'return') and (c_gate)",
+              "when": "(not dead and city_saved and c_recaptured and c_settled and c_victory == 'return') and (c_gate)",
+              "if_source": "source accept and exact source variant predicate"
+            },
+            {
+              "variant_if": "not c_gate",
+              "asset": "cut.v3.unkept_promise",
+              "render_as": "cut",
+              "semantic_note": "母亲仍下落不明，未领赏与寻人；不宣告死亡。",
+              "if": "(not dead and city_saved and c_recaptured and c_settled and c_victory == 'return') and (not c_gate)",
+              "when": "(not dead and city_saved and c_recaptured and c_settled and c_victory == 'return') and (not c_gate)",
+              "if_source": "source accept and exact source variant predicate"
+            }
+          ],
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "门外立起登记失散亲人的木牌，来人逐个寻找名字。",
+          "when": "not dead and city_saved and c_recaptured and c_settled and c_victory == 'return'",
+          "if": "not dead and city_saved and c_recaptured and c_settled and c_victory == 'return'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and city_saved and c_recaptured and c_settled and c_victory == 'return'",
+      "ending_scope": "main",
+      "valence": "good",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。",
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "c_shared",
+          "text_source": "variants[0].text",
+          "source_text": "此后调兵、军饷和军中任官，都要在议事桌上获得同意。你再不能一道诏独自定下。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not c_shared",
+          "text_source": "variants[1].text",
+          "source_text": "军队领足军饷按约回营。你保留调兵权，也独自承担下一次筹饷的责任。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "c_gate",
+          "text_source": "variants[2].text",
+          "source_text": "你经过开过的小门，看见获救的老妇坐在门口。她的儿子把门闩重新装好，这回不用躲着人。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 3,
+          "if": "not c_gate",
+          "text_source": "variants[3].text",
+          "source_text": "当初答应开门的旧卒没有来领赏。你先破门、后找人的决定留下了遗憾；寻找他母亲的事仍记在未了的名册上。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "TE_C_ATTACK",
+      "title": "攻守易势",
+      "kind": "TE",
+      "entry_background": "cut.victory.return_terms",
+      "source_entry_background": "bg.court",
+      "when": "not dead and c_enemy_broken and c_enemy_grain and c_victory == 'attack'",
+      "shots": [
+        {
+          "asset": "cut.victory.return_terms",
+          "render_as": "cut",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "旧议和条款被推回金使面前。",
+          "when": "not dead and c_enemy_broken and c_enemy_grain and c_victory == 'attack'",
+          "if": "not dead and c_enemy_broken and c_enemy_grain and c_victory == 'attack'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.yellow_river",
+          "render_as": "bg",
+          "representation_note": "河桥作为已释放者回家的地点承接；无专属全员跑向亲人静帧。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "获释的人越过河桥，向等候的亲人跑去。",
+          "when": "not dead and c_enemy_broken and c_enemy_grain and c_victory == 'attack'",
+          "if": "not dead and c_enemy_broken and c_enemy_grain and c_victory == 'attack'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.border_market",
+          "render_as": "cut",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "边地的新一年，先响起的是开市的锣。",
+          "when": "not dead and c_enemy_broken and c_enemy_grain and c_victory == 'attack'",
+          "if": "not dead and c_enemy_broken and c_enemy_grain and c_victory == 'attack'",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and c_enemy_broken and c_enemy_grain and c_victory == 'attack'",
+      "ending_scope": "main",
+      "valence": "good",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。",
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "c_mercy",
+          "text_source": "variants[0].text",
+          "source_text": "你少拿的那批财物，换成了早回家的俘虏。补饷迟了些，军中记得这笔账。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not c_mercy",
+          "text_source": "variants[1].text",
+          "source_text": "归家的人多等了十天；交还的人数与军队的赔偿，最终都写进履行过的清册。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "c_captured_captain",
+          "text_source": "variants[2].text",
+          "source_text": "被俘的敌军副将直到人质交割完成才获释。那次冒险，给了你谈判桌上的一份实筹。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "FE_FATHER",
+      "title": "父皇复位",
+      "kind": "LE",
+      "entry_background": "cut.v3.father_restored",
+      "source_entry_background": "bg.longde",
+      "when": "not dead and father_restored and c_abdicated",
+      "shots": [
+        {
+          "asset": "bg.longde",
+          "render_as": "bg",
+          "prop": "prop.scroll",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "龙德宫案上摆着一份不用你签的诏书。",
+          "when": "not dead and father_restored and c_abdicated",
+          "if": "not dead and father_restored and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.v3.south_road_pov",
+          "render_as": "bg",
+          "representation_note": "只为车队南行的代表地点；不画玩家在车上仍掌权。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "宫外的车队再次向南，窗内的人没有被问去留。",
+          "when": "not dead and father_restored and c_abdicated",
+          "if": "not dead and father_restored and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.father_restored",
+          "render_as": "cut",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "多年后，白发的你把新朝年号抄在旧书边。",
+          "when": "not dead and father_restored and c_abdicated",
+          "if": "not dead and father_restored and c_abdicated",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and father_restored and c_abdicated",
+      "ending_scope": "main",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "FE_ARMY",
+      "title": "兵强君弱",
+      "kind": "LE",
+      "entry_background": "cut.v3.second_signature",
+      "source_entry_background": "bg.court",
+      "when": "not dead and army_autonomy and army_rules and city_saved",
+      "shots": [
+        {
+          "asset": "cut.v3.second_signature",
+          "render_as": "cut",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "御座仍高，议事桌却设在将领们坐的那一侧。",
+          "when": "not dead and army_autonomy and army_rules and city_saved",
+          "if": "not dead and army_autonomy and army_rules and city_saved",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.second_signature",
+          "render_as": "cut",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "一封换将诏书被退回，空白处等着另一枚印。",
+          "when": "not dead and army_autonomy and army_rules and city_saved",
+          "if": "not dead and army_autonomy and army_rules and city_saved",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.v3.court_pov",
+          "render_as": "bg",
+          "representation_note": "新朝由护军先入殿的制度延续，用源文本和空皇帝视角朝堂承接；不贴主角新登基全身。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "多年后新皇登基，最先入殿的是护卫军的统领。",
+          "when": "not dead and army_autonomy and army_rules and city_saved",
+          "if": "not dead and army_autonomy and army_rules and city_saved",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and army_autonomy and army_rules and city_saved",
+      "ending_scope": "main",
+      "valence": "mixed",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "FE_PEACE",
+      "title": "屈身保国",
+      "kind": "LE",
+      "entry_background": "cut.v3.annual_tribute",
+      "source_entry_background": "bg.city_gate",
+      "when": "not dead and peace_people_safe and peace_kept and city_saved",
+      "shots": [
+        {
+          "asset": "cut.v3.annual_tribute",
+          "render_as": "cut",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "城门下的学童让开道路，一队钱车缓缓北去。",
+          "when": "not dead and peace_people_safe and peace_kept and city_saved",
+          "if": "not dead and peace_people_safe and peace_kept and city_saved",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.study",
+          "render_as": "bg",
+          "prop": "prop.memorial",
+          "representation_note": "普通无字文书代表缺失州城清单；地图边界由文字解释，禁止造精确史料图。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "旧地图上缺失的州城仍用淡墨圈着，始终没有擦去。",
+          "when": "not dead and peace_people_safe and peace_kept and city_saved",
+          "if": "not dead and peace_people_safe and peace_kept and city_saved",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.annual_tribute",
+          "render_as": "cut",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "老年的你把条约与今年的粮价放在同一张案上。",
+          "when": "not dead and peace_people_safe and peace_kept and city_saved",
+          "if": "not dead and peace_people_safe and peace_kept and city_saved",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and peace_people_safe and peace_kept and city_saved",
+      "ending_scope": "main",
+      "valence": "mixed",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。",
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "peace_taxed",
+          "text_source": "variants[0].text",
+          "source_text": "特别税后来改了名字，却没有真正消失。民间记得你保住城，也记得空过的饭碗。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "not peace_taxed",
+          "text_source": "variants[1].text",
+          "source_text": "宫里的新作坊一直没有重开。节省保住了第一年的饭碗，却替不了以后每一年的筹款。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "FE_MARTYR",
+      "title": "孤城留名",
+      "kind": "BE",
+      "entry_background": "cut.v3.martyr_ferry",
+      "source_entry_background": "bg.city_gate",
+      "when": "dead and sac_saved and sac_evacuation",
+      "shots": [
+        {
+          "asset": "cut.v3.martyr_ferry",
+          "render_as": "cut",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "空船位被一名伤者坐满，渡船离岸。",
+          "when": "dead and sac_saved and sac_evacuation",
+          "if": "dead and sac_saved and sac_evacuation",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.martyr_ferry",
+          "render_as": "cut",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "城头御旗烧尽时，南岸的队伍已走出雾。",
+          "when": "dead and sac_saved and sac_evacuation",
+          "if": "dead and sac_saved and sac_evacuation",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.taixue",
+          "render_as": "bg",
+          "prop": "prop.history_book",
+          "representation_note": "南方后来纪念的代表地点；无现成精确祠碑，碑文由终局正文表达。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "多年后，南方城里的祠碑旁，孩子听老人说起留下的那个人。",
+          "when": "dead and sac_saved and sac_evacuation",
+          "if": "dead and sac_saved and sac_evacuation",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead and sac_saved and sac_evacuation",
+      "ending_scope": "main",
+      "valence": "tragic_good",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "FE_SOUTH",
+      "title": "南渡再起",
+      "kind": "LE",
+      "entry_background": "cut.v3.national_south",
+      "source_entry_background": "bg.road_south",
+      "when": "not dead and lost and p_south_settled and p_south_committed",
+      "shots": [
+        {
+          "asset": "cut.v3.national_south",
+          "render_as": "cut",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "江边的渡船卸下粮食，不再只卸逃难的人。",
+          "when": "not dead and lost and p_south_settled and p_south_committed",
+          "if": "not dead and lost and p_south_settled and p_south_committed",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.taixue",
+          "render_as": "bg",
+          "representation_note": "学校代表重建；窗外修船声由正文/音效，不宣称太学画面就是确切南方新城建筑。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "南方新城的孩子念书，窗外能听见修船声。",
+          "when": "not dead and lost and p_south_settled and p_south_committed",
+          "if": "not dead and lost and p_south_settled and p_south_committed",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.national_south",
+          "render_as": "cut",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "晚年的你把帝位交给后辈，案上仍压着北方来的家书。",
+          "when": "not dead and lost and p_south_settled and p_south_committed",
+          "if": "not dead and lost and p_south_settled and p_south_committed",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and lost and p_south_settled and p_south_committed",
+      "ending_scope": "main",
+      "valence": "mixed",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。",
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "p_south_priority == 'people'",
+          "text_source": "variants[0].text",
+          "source_text": "最早一批上船的人在南方扎根，他们认得的皇帝，是那次把银箱搬下船的人。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "p_south_priority == 'treasury'",
+          "text_source": "variants[1].text",
+          "source_text": "留下的护军带回了一部分逃民，还有一些姓名只留在过江名册的空栏里。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "c_shared",
+          "text_source": "variants[2].text",
+          "source_text": "地方议税的席位一直留着。你保住了国家，也必须与出粮出力的人商量以后。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "FE_DREAM",
+      "title": "大梦一场",
+      "kind": "LE",
+      "entry_background": "bg.v3.modern_home",
+      "source_entry_background": "bg.zhouqiao_night",
+      "when": "not dead and modern_together and meta_main_worlds >= 3",
+      "shots": [
+        {
+          "asset": "bg.v3.modern_home",
+          "render_as": "bg",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "现代卧室的窗帘被晨风吹起，手机闹铃停下，两个人并肩坐在床边。",
+          "when": "not dead and modern_together and meta_main_worlds >= 3",
+          "if": "not dead and modern_together and meta_main_worlds >= 3",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.modern_breakfast",
+          "render_as": "cut",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "厨房里煎坏了一只蛋，一只手把火关小；餐桌上放着两只普通的碗。",
+          "when": "not dead and modern_together and meta_main_worlds >= 3",
+          "if": "not dead and modern_together and meta_main_worlds >= 3",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.modern_crosswalk",
+          "render_as": "cut",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "多年后，两个人提着菜走过路口。车灯变绿，谁也不用等一声圣旨。",
+          "when": "not dead and modern_together and meta_main_worlds >= 3",
+          "if": "not dead and modern_together and meta_main_worlds >= 3",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "portrait_overrides": {
+        "沈青": "face.shen_qing_modern.calm"
+      },
+      "spoiler": "hidden",
+      "portraits": {
+        "沈青": "face.shen_qing_modern.calm"
+      },
+      "accept": "not dead and modern_together and meta_main_worlds >= 3",
+      "ending_scope": "hidden",
+      "valence": "good",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。"
+    },
+    {
+      "node": "FE_TWO",
+      "title": "两帝争统",
+      "kind": "LE",
+      "entry_background": "cut.v3.two_courts",
+      "source_entry_background": "bg.yellow_river",
+      "when": "not dead and lost and p_rival_proclaimed and p_two_courts",
+      "shots": [
+        {
+          "asset": "cut.v3.two_courts",
+          "render_as": "cut",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "渡口两岸挂着不同年号的旗，粮船停在中间。",
+          "when": "not dead and lost and p_rival_proclaimed and p_two_courts",
+          "if": "not dead and lost and p_rival_proclaimed and p_two_courts",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.two_courts",
+          "render_as": "cut",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "官差把旧税单收走，又贴上一张新的。",
+          "when": "not dead and lost and p_rival_proclaimed and p_two_courts",
+          "if": "not dead and lost and p_rival_proclaimed and p_two_courts",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.study",
+          "render_as": "bg",
+          "prop": "prop.memorial",
+          "representation_note": "晚年仍在议事的代表第一人称地点；两地未统一由 accept/正文明确。",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "晚年的你仍坐在议事案前，北方失地与南方朝廷，都没有归来。",
+          "when": "not dead and lost and p_rival_proclaimed and p_two_courts",
+          "if": "not dead and lost and p_rival_proclaimed and p_two_courts",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "not dead and lost and p_rival_proclaimed and p_two_courts",
+      "ending_scope": "main",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。",
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "p_acknowledged",
+          "text_source": "variants[0].text",
+          "source_text": "当年换你回来的承统书，被两边反复传抄。人们争论哪道诏算数，却不再轻易相信任何一份。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    },
+    {
+      "node": "FE_JINGKANG",
+      "title": "靖康重演",
+      "kind": "BE",
+      "entry_background": "cut.v3.captive_years",
+      "source_entry_background": "bg.north_wild",
+      "when": "dead and captive and lost",
+      "shots": [
+        {
+          "asset": "bg.north_wild",
+          "render_as": "bg",
+          "shot_index": 0,
+          "source_shot_index": 0,
+          "text_source": "shots_outline[0]",
+          "source_text": "北去的车轮压过雪地，京城的方向已经看不见。",
+          "when": "dead and captive and lost",
+          "if": "dead and captive and lost",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "bg.north_wild",
+          "render_as": "bg",
+          "representation_note": "长期北地受拘用字幕跨年，树长粗/换守卫由第三镜新图支持。",
+          "shot_index": 1,
+          "source_shot_index": 1,
+          "text_source": "shots_outline[1]",
+          "source_text": "院里新栽的小树长粗，守卫换过一拨又一拨。",
+          "when": "dead and captive and lost",
+          "if": "dead and captive and lost",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        },
+        {
+          "asset": "cut.v3.captive_years",
+          "render_as": "cut",
+          "shot_index": 2,
+          "source_shot_index": 2,
+          "text_source": "shots_outline[2]",
+          "source_text": "空屋里留着一盏旧纸灯，窗外又落了一场雪。",
+          "when": "dead and captive and lost",
+          "if": "dead and captive and lost",
+          "if_source": "source node accept, copied verbatim",
+          "when_snapshot": "terminal_entry",
+          "representation": "existing/generated static image; source text carries action and time passage"
+        }
+      ],
+      "after_choice": [],
+      "runtime_verified": false,
+      "accept": "dead and captive and lost",
+      "ending_scope": "main",
+      "valence": "bad",
+      "stop_after_terminal": true,
+      "entry_override_note": "先确认源 accept 成立，终局首屏直接进入相应已审场景/余波；不先亮源 assets 的旧占位背景，再依序呈现三个源镜位。",
+      "variants": [
+        {
+          "variant_index": 0,
+          "if": "p_north_legacy == 'entrusted'",
+          "text_source": "variants[0].text",
+          "source_text": "你的信请南方先顾百姓。有人因此不再空耗于迎驾，继续守住还能守的地方。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 1,
+          "if": "p_north_legacy == 'demanded'",
+          "text_source": "variants[1].text",
+          "source_text": "你仍盼旧臣迎归。有些人奔走半生，有些人等到最后，也没再见到你的印。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 2,
+          "if": "p_north_record",
+          "text_source": "variants[2].text",
+          "source_text": "同囚后人记下了你的讲述。那些失误没有因此消失，却不再只剩一句“全怪别人”。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        },
+        {
+          "variant_index": 3,
+          "if": "not p_north_record",
+          "text_source": "variants[3].text",
+          "source_text": "纸灯年年挂起。孩子们长大后，记得的是有人陪他们把严冬熬过去。",
+          "art_policy": "keep source conditional text; do not force an unrelated illustration"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "source_nodes": 145,
+    "covered_nodes": 145,
+    "source_terminals": 35,
+    "covered_terminals": 35,
+    "terminal_shot_slots": 105,
+    "terminal_counts_by_scope": {
+      "branch": 19,
+      "personal": 5,
+      "main": 10,
+      "hidden": 1
+    },
+    "after_choice_bindings": 8,
+    "unique_referenced_assets": 85,
+    "missing_asset_ids": [],
+    "pending_root_exact_ids": [],
+    "source_model_current": true,
+    "forbidden_full_body_ending_references": [],
+    "old21_cut_count": 21,
+    "old21_cuts_used": [
+      "cut.departure.bridge_old_age",
+      "cut.departure.overseas_port",
+      "cut.departure.retreat_house",
+      "cut.departure.shop_life",
+      "cut.ending.crowd_lantern",
+      "cut.ending.pay_mutiny",
+      "cut.ending.river_pass",
+      "cut.office.return_seal",
+      "cut.return.open_gate",
+      "cut.victory.return_terms"
+    ],
+    "old21_cuts_not_forced": [
+      "cut.account.people_receipts",
+      "cut.captive.family_letter",
+      "cut.departure.river_abdication",
+      "cut.ending.broken_pact",
+      "cut.ending.camp_fever_letter",
+      "cut.ending.false_relief",
+      "cut.ending.grain_fire",
+      "cut.ending.sealed_brazier",
+      "cut.ending.siege_powder",
+      "cut.ending.tunnel_collapse",
+      "cut.ending.unverified_drug"
+    ],
+    "review_limitations": [
+      "35终局共105个镜位已映射；其中大量过程镜是背景/道具复用，非105张新画，也非动画。",
+      "源台词中的粮袋/弯腰牌/空架/冠带/军鼓手/御马/靴/祠碑等未均有专属精确画；每镜 representation_note 已指明，不改旧素材补造。",
+      "同一静态图可承接多镜；年老、雨、换季、具体动作仅在原图具备时声称可见，否则由源正文承担。",
+      "TE_C_RETURN not c_gate 为仍在寻人，不能用死亡/祠碑；TE_C_HOLD 的 c_abandoned_village 则按该源变体写母亲纪念，二者不混。",
+      "本候选未执行程序接线与游戏实播；全部新增25图已通过主代理视觉初审，1091资产文件检查与110边界测试已通过（主代理报告）。"
+    ],
+    "new25_exact_ids_used": [
+      "bg.v3.court_pov",
+      "bg.v3.court_pov.night",
+      "bg.v3.modern_home",
+      "bg.v3.south_road_pov",
+      "bg.v3.south_road_pov.snow",
+      "cut.v3.annual_tribute",
+      "cut.v3.border_market",
+      "cut.v3.captive_years",
+      "cut.v3.city_ordinary",
+      "cut.v3.dream_door",
+      "cut.v3.family_farewell",
+      "cut.v3.father_restored",
+      "cut.v3.flank_closed",
+      "cut.v3.martyr_ferry",
+      "cut.v3.modern_breakfast",
+      "cut.v3.modern_crosswalk",
+      "cut.v3.national_south",
+      "cut.v3.pay_guarded",
+      "cut.v3.pay_settled",
+      "cut.v3.reunion_gate",
+      "cut.v3.second_signature",
+      "cut.v3.soldier_names",
+      "cut.v3.two_courts",
+      "cut.v3.unkept_promise",
+      "face.shen_qing_modern.calm"
+    ],
+    "new25_used_count": 25,
+    "asset_ids_in_current_manifest": true,
+    "terminal_entry_placeholder_checks": "passed: B01-B06 no court_empty; C_MUTINY night camp; successful city entry and choice outcomes use open gates",
+    "source_terminal_field_copy_checks": "35 accepts/scopes/valences and 105 source shot indices/texts equal frozen source",
+    "source_choice_guard_copy_checks": "8/8 exact source guard + selected before_choice/before_resolution snapshot",
+    "consumer_when_alias_checks": {
+      "shot_rows": 113,
+      "asset_cases": 2,
+      "all_equal_if": true
+    },
+    "art_review_parent_report": "25 new stills visually reviewed; 1091 asset file checks and 110 boundary tests passed per parent agent"
+  },
+  "old_movies_policy": {
+    "status": "retained-not-applicable-to-forward-v3.2-dream",
+    "ids": [
+      "cut.taishang.leave.cinematic",
+      "cut.zhong.open_gate.cinematic",
+      "cut.river.flee.cinematic",
+      "mov.hand_over"
+    ],
+    "v3_bindings": [],
+    "reason": "冻结 v3 源 assets 仅指定背景；本轮 art_requests 为静态图，未要求旧动态转场。旧传位/开门/渡河的历史事件、方向和旧触发条件不能自动套到 v3 的选择。",
+    "integration_rule": "保留全部既有文件；v3只按本绑定显式节点/选择触发静态图，不继承旧 movie/cinematic 自动播放协议。"
+  }
+}

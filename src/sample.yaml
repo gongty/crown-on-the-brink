@@ -1,0 +1,224 @@
+version: 1
+entry: sample.hand_over
+variables:
+  - {id: 官, type: number, min: 0, max: 100, initial: 40, visible: true}
+  - {id: 兵, type: number, min: 0, max: 100, initial: 35, visible: true}
+  - {id: 民, type: number, min: 0, max: 100, initial: 50, visible: true}
+  - {id: 钱, type: number, min: 0, max: 100, initial: 35, visible: true}
+  - {id: 身, type: number, min: 0, max: 100, initial: 80, visible: true}
+  - {id: 金势, type: number, min: 0, max: 100, initial: 10, visible: false}
+  - {id: 回合, type: number, min: 1, max: 999, initial: 1, visible: false}
+  - {id: 日期, type: string, initial: '1126-01-18', visible: false}
+  - {id: 旗标.守城, type: string, initial: '', visible: false}
+  - {id: 旗标.围城, type: boolean, initial: false, visible: false}
+people:
+  - {id: taishang, name: 太上皇, camp: 上皇旧人, tier: A, kind: other, favor: 45, power: 70, status: 在朝, office: 太上皇, adult: true, window: ['1126-01-18','1127-05-31']}
+  - id: li_gang
+    name: 李纲
+    camp: 主战
+    tier: A
+    kind: civil
+    favor: 50
+    power: 45
+    status: 在朝
+    office: 兵部侍郎
+    adult: true
+    window: ['1126-01-18','1127-05-31']
+    saves: [群臣废立, 民变]
+    rescueEffects: ['li_gang.权 -大', 'li_gang.处境 = 罢免']
+  - {id: he_guan, name: 何灌, camp: 主战, tier: B, kind: military, favor: 50, power: 45, status: 在朝, office: 都指挥使, adult: true, saves: [刺客, 城破], rescueScene: sample.rescue, rescueEffects: ["he_guan.权 -大", "he_guan.处境 = 罢免"]}
+  - {id: li_bangyan, name: 李邦彦, camp: 主和, tier: A, kind: civil, favor: 45, power: 65, status: 在朝, office: 宰相, adult: true}
+scenes:
+  - id: sample.hand_over
+    act: 1
+    type: main
+    period: insert
+    when: {turn: [1,1]}
+    weight: 1
+    once: true
+    cast: [taishang]
+    tension: 8
+    beat: 两难
+    danger: 拒绝接位，东京将群龙无首。
+    shots:
+      - card: {date: 宣和七年 十二月廿三, title: 福宁殿, note: 离靖康还有356天}
+      - bg: bg.funing_night
+        music: cue.title
+        right: face.taishang.calm
+        place: 福宁殿
+        time: 夜
+        say: [taishang, 传位东宫。]
+      - video: mov.hand_over
+        poster: cut.hand_over.scroll
+        think: 我认得这张脸。三天以后，他就要跑。
+      - if: 'seen.end.sample_refuse'
+        think: 上回我没接。殿外的雪没有停。
+      - think: 不接，东京连个盖章的人都没了。
+    choice:
+      timer: 8
+      default: accept
+      options:
+        - {id: accept, text: 接。, tags: [史书], effects: ['官 +小'], goto: sample.court}
+        - {id: ask, text: 父皇，守城的人留下。, effects: ['taishang.好感 -小', '兵 +小'], goto: sample.court}
+        - {id: refuse, text: 不接。, tags: [险], goto: end.sample_refuse}
+  - id: sample.court
+    act: 1
+    type: main
+    period: insert
+    when: {turn: [1,1]}
+    weight: 1
+    once: true
+    cast: [li_gang, li_bangyan, he_guan]
+    tension: 6
+    beat: 揭示
+    shots:
+      - bg: bg.court
+        music: cue.court
+        right: face.li_bangyan.calm
+        place: 大庆殿
+        time: 早
+        say: [li_bangyan, 金兵将至，请官家暂幸襄、邓。]
+      - right: face.li_gang.angry
+        say: [li_gang, 天下城池，岂有如都城者？]
+      - if: 'taishang.好感 < 45'
+        think: 人留下了。可他们听谁的，还不一定。
+      - if: 'taishang.好感 >= 45'
+        think: 这皇位还没坐热，已经有人替我收拾行李。
+    choice:
+      options:
+        - {id: history, text: 驳。朕就在东京。, tags: [史书], effects: ['兵 +小'], goto: sample.siege}
+        - id: appoint
+          text: 李纲，东京交给你。
+          tags: [天机]
+          effects: ['li_gang.好感 +大', 'li_gang.权 +大', 'he_guan.好感 +大', 'he_guan.权 +大', '旗标.守城 = li_gang', '兵 +大', '钱 -中']
+          posthumous: [武,勤]
+          deviation: {李纲: 1}
+          rewrite: {h.sample: 李纲受命守城。}
+          shots: [{right: face.li_gang.happy, say: [li_gang, 臣领旨。请官家留在城中。]}]
+          goto: sample.siege
+        - {id: feast, text: 先备晚宴，朕要听曲。, tags: [享乐], effects: ['官 -中', '身 -小 @酒'], posthumous: [荒], goto: sample.siege}
+  - id: sample.siege
+    act: 1
+    type: main
+    period: insert
+    when: {turn: [1,1]}
+    weight: 1
+    once: true
+    cast: [li_gang]
+    tension: 9
+    beat: 爆发
+    danger: 城头箭矢落下，登城可能中箭。
+    checkpoint: true
+    shots:
+      - card: {date: 播放器样戏 时间压缩, title: 兵临城下, note: 测试演出，不是灰盒正式剧情}
+      - bg: bg.city_wall.fire
+        music: cue.siege
+        fx: shake
+        place: 东京城头
+        time: 昼
+        think: 箭落在女墙上。刚才站人的地方，只剩一顶帽子。
+      - if: '旗标.守城 == "li_gang"'
+        right: face.li_gang.calm
+        say: [li_gang, 官家，臣在。]
+      - if: '旗标.守城 != "li_gang"'
+        think: 城下全是火光。城头没有人应声。
+      - think: 信谁，现在见分晓。
+    choice:
+      options:
+        - {id: wait, text: 回宫等消息。, tags: [史书], effects: ['兵 -中'], goto: end.sample_treaty}
+        - {id: entrust, text: 守城的人留下，朕也留下。, effects: ['民 +中'], goto: '@next'}
+        - {id: arrow, text: 上城督战！, tags: [险], goto: end.sample_arrow}
+  - id: sample.rescue
+    act: 1
+    type: rescue
+    period: insert
+    weight: 1
+    once: true
+    cast: [he_guan]
+    tension: 9
+    beat: 爆发
+    shots:
+      - {bg: bg.city_wall, right: face.he_guan.angry, say: [he_guan, 官家，退到女墙后！]}
+      - {think: 他把我拉了回来。代价记在了他身上。}
+    next: end.sample_treaty
+  - id: system.warning
+    act: 1
+    type: warning
+    period: insert
+    weight: 1
+    once: false
+    cast: []
+    tension: 7
+    beat: 紧张
+    shots: [{bg: bg.court, say: [内侍, 官家，殿外议论声越来越大了。]}]
+    next: '@next'
+endings:
+  - id: end.sample_refuse
+    no: 46
+    name: 坚辞
+    category: 出走
+    door: 1
+    priority: 100
+    if: 'true'
+    shots: [{bg: end.46_refuse}, {think: 殿门关上。雪还在下。}]
+    history: 太子坚辞不受，东京无主。
+    historian: 史臣曰：未即位而先让。
+    why: '你选择了「{选择}」。'
+    temple: 未即位
+    epithet: 顺
+  - id: end.sample_arrow
+    no: 11
+    name: 城头流矢
+    category: 被杀
+    door: 1
+    priority: 100
+    if: 'true'
+    domain: 刺客
+    shots: [{bg: end.11_arrow}, {think: 那顶帽子旁，多了一卷未读的诏书。}]
+    history: 帝登城督战，中流矢。
+    historian: 史臣曰：城下尚远，城头已近。
+    why: '你选择了「{选择}」，走进城头箭雨。'
+    modifiers: {武: 2}
+  - id: end.sample_treaty
+    no: 51
+    name: 城下之盟
+    category: 好结局
+    door: 4
+    priority: 10
+    if: 'true'
+    shots: [{bg: end.51_treaty}, {think: 城还在。账，也还在。}]
+    history: 帝遣使议和，输金帛，金人乃退。
+    historian: 史臣曰：保住了城，没保住钱袋。
+    why: '你在城头选择「{选择}」，兵势余{兵}。'
+    temple: 宋恭宗
+    epithet: 恭
+  - id: end.sample_hold
+    no: 49
+    name: 守住东京
+    category: 好结局
+    door: 4
+    priority: 100
+    if: '旗标.守城 == "li_gang" && li_gang.关系 == "柱石"'
+    shots: [{bg: end.49_hold}, {think: 这一页，被我改了。}]
+    history: 东京守御有备，金人攻城不克，引兵去。
+    historian: 史臣曰：帝知用人，亦肯留城。
+    why: '你任用李纲守城，好感{li_gang.好感}、权{li_gang.权}。'
+    temple: 宋烈宗
+    epithet: 武
+rules:
+  tiers: {小: 3, 中: 7, 大: 15}
+  assignments: {大权: 60}
+  warning: {low: 15, high: 85, scene: system.warning}
+  relations: {friend: 60, enemy: 30, power: 60}
+  spill: {ratio: 0.3333333333}
+  attack: {hazardTurns: 2, consortFavor: 10}
+  schedule: {court: 2, periods: [court, day, night], celebrityEvery: 2, distinctByTurn: 10, distinctCount: 8, maxConsecutive: 2}
+  activities: []
+  turns:
+    - {turn: 2, date: '1126-01-28', days: 10, jin: 12, effects: [], lines: [金军又近了一程。]}
+  historyBlur: 1
+  titles: {fallbackTemple: 宋愍宗, fallbackEpithet: 愍, tags: {武: 武, 勤: 恭, 荒: 荒}, templeRules: []}
+  media:
+    - {id: mov.hand_over, file: media/hand-over-test.mp4, poster: cut.hand_over.scroll}
+history:
+  - {id: h.sample, date: '1126-01-18', text: 测试条目：守城人选。, tags: [李纲], source: '程序样戏，不作史实依据'}

@@ -1,0 +1,382 @@
+{
+  "version": 1,
+  "status": "tooling-candidate-seasonal-values-await-anchor-review",
+  "sources": [
+    "docs/视觉规范.md:2,3,7.3,7.6",
+    "docs/视觉样张.html:ERA_PAL"
+  ],
+  "sceneSlots": [
+    "sky1",
+    "sky2",
+    "far",
+    "roof",
+    "wall",
+    "wood",
+    "water",
+    "water2",
+    "ground",
+    "grass",
+    "people",
+    "light",
+    "line",
+    "extra"
+  ],
+  "sceneProfiles": {
+    "chengping": [
+      "#A9C4C0",
+      "#CFDCD6",
+      "#9AA6A0",
+      "#6F7378",
+      "#E6D5B0",
+      "#9C5B2E",
+      "#5E7F92",
+      "#8FB3B0",
+      "#B89A66",
+      "#7FA05A",
+      "#221E1A",
+      "#AE3A2A",
+      "#4A4238",
+      "#AE3A2A"
+    ],
+    "fengqi": [
+      "#B4BCB8",
+      "#CDCFC8",
+      "#9C9F98",
+      "#6E7072",
+      "#DCD0B6",
+      "#8D5F3E",
+      "#66788A",
+      "#93A8A6",
+      "#AE9873",
+      "#8C9566",
+      "#221E1A",
+      "#AE3A2A",
+      "#4A4238",
+      "#AE3A2A"
+    ],
+    "weicheng": [
+      "#1B1A1F",
+      "#2A272D",
+      "#3A3438",
+      "#2E2B30",
+      "#5A4F49",
+      "#4A3328",
+      "#23262E",
+      "#33394A",
+      "#3C3530",
+      "#36362E",
+      "#0E0D10",
+      "#D0602F",
+      "#0E0D10",
+      "#E8A048"
+    ],
+    "nandu": [
+      "#DCE4E6",
+      "#E9EDEB",
+      "#B5BDBE",
+      "#7D848A",
+      "#DADBD3",
+      "#7E6A5A",
+      "#7E97A6",
+      "#A9BEC4",
+      "#BDB6A4",
+      "#9AA88E",
+      "#2C2B2D",
+      "#9A4A3C",
+      "#55585A",
+      "#9A4A3C"
+    ],
+    "yin": [
+      "#16191F",
+      "#232832",
+      "#4A5866",
+      "#2B323C",
+      "#B7C2C6",
+      "#6A5F58",
+      "#1E2733",
+      "#3E5266",
+      "#262C34",
+      "#2B3530",
+      "#0B0D11",
+      "#AE3A2A",
+      "#0B0D11",
+      "#7F8B91"
+    ]
+  },
+  "eras": {
+    "chengping": {
+      "sky1": "#A9C4C0",
+      "sky2": "#CFDCD6",
+      "far": "#9AA6A0",
+      "roof": "#6F7378",
+      "wall": "#E6D5B0",
+      "wood": "#9C5B2E",
+      "water": "#5E7F92",
+      "water2": "#8FB3B0",
+      "ground": "#B89A66",
+      "grass": "#7FA05A",
+      "people": "#221E1A",
+      "light": "#AE3A2A",
+      "line": "#4A4238"
+    },
+    "fengqi": {
+      "sky1": "#B4BCB8",
+      "sky2": "#CDCFC8",
+      "far": "#9C9F98",
+      "roof": "#6E7072",
+      "wall": "#DCD0B6",
+      "wood": "#8D5F3E",
+      "water": "#66788A",
+      "water2": "#93A8A6",
+      "ground": "#AE9873",
+      "grass": "#8C9566",
+      "people": "#221E1A",
+      "light": "#AE3A2A",
+      "line": "#4A4238"
+    },
+    "weicheng": {
+      "sky1": "#1B1A1F",
+      "sky2": "#2A272D",
+      "far": "#3A3438",
+      "roof": "#2E2B30",
+      "wall": "#5A4F49",
+      "wood": "#4A3328",
+      "water": "#23262E",
+      "water2": "#33394A",
+      "ground": "#3C3530",
+      "grass": "#36362E",
+      "people": "#0E0D10",
+      "light": "#D0602F",
+      "line": "#0E0D10",
+      "fire2": "#E8A048"
+    },
+    "nandu": {
+      "sky1": "#DCE4E6",
+      "sky2": "#E9EDEB",
+      "far": "#B5BDBE",
+      "roof": "#7D848A",
+      "wall": "#DADBD3",
+      "wood": "#7E6A5A",
+      "water": "#7E97A6",
+      "water2": "#A9BEC4",
+      "ground": "#BDB6A4",
+      "grass": "#9AA88E",
+      "people": "#2C2B2D",
+      "light": "#9A4A3C",
+      "line": "#55585A"
+    },
+    "yin": {
+      "sky1": "#16191F",
+      "sky2": "#232832",
+      "far": "#4A5866",
+      "roof": "#2B323C",
+      "wall": "#B7C2C6",
+      "wood": "#6A5F58",
+      "water": "#1E2733",
+      "water2": "#3E5266",
+      "ground": "#262C34",
+      "grass": "#2B3530",
+      "people": "#0B0D11",
+      "light": "#AE3A2A",
+      "line": "#0B0D11",
+      "fog": "#7F8B91"
+    }
+  },
+  "ui": {
+    "paper": "#F1E6CE",
+    "silk": "#E6D5B0",
+    "silk-2": "#CDB98F",
+    "ink-3": "#6E6454",
+    "ink-2": "#4A4238",
+    "ink": "#221E1A",
+    "zhu": "#AE3A2A",
+    "zhe": "#9C5B2E",
+    "teng": "#C9962E",
+    "shilv": "#3B6E53",
+    "shiqing": "#2F5D86",
+    "jiangzi": "#74407A",
+    "jin": "#B5631A",
+    "jin-glow": "#E0A040",
+    "tianqing": "#8FB3B0",
+    "huaqing": "#3A4E6B",
+    "yuebai": "#DCE4E6",
+    "night": "#1B1A1F",
+    "night-2": "#2A272D",
+    "night-text": "#E6DDCB",
+    "ash": "#A39A8E",
+    "ember": "#D0602F",
+    "bg": "#16191F",
+    "surface": "#232832",
+    "surface-2": "#323A46",
+    "text-2": "#B7C2C6",
+    "line": "#5B6870",
+    "r1": "#7FA6CF",
+    "r2": "#B88AC0",
+    "accent": "#9A4A3C",
+    "text-3": "#7F8B91"
+  },
+  "clothing": {
+    "绿": "#4F7356",
+    "皂": "#2B2A2E",
+    "白": "#EDE6D6",
+    "褐": "#7A5C44",
+    "青": "#4C6A78",
+    "绯": "#A8463A",
+    "紫": "#5E3F66",
+    "藕荷": "#B79AA3",
+    "鹅黄": "#E1C77E",
+    "檀": "#B07A6A"
+  },
+  "figureProfile": [
+    "#221E1A",
+    "#4A4238",
+    "#CDB98F",
+    "#E6D5B0",
+    "#6F7378",
+    "#B89A66",
+    "#4F7356",
+    "#2B2A2E",
+    "#EDE6D6",
+    "#7A5C44",
+    "#4C6A78",
+    "#A8463A",
+    "#5E3F66",
+    "#B79AA3",
+    "#E1C77E",
+    "#B07A6A"
+  ],
+  "seasons": {
+    "spring": {
+      "sky1": "#8FB3B0",
+      "sky2": "#DCE4E6",
+      "ground": "#B89A66",
+      "grass": "#7FA05A"
+    },
+    "summer": {
+      "sky1": "#8FB3B0",
+      "sky2": "#DCE4E6",
+      "ground": "#B89A66",
+      "grass": "#3B6E53"
+    },
+    "autumn": {
+      "sky1": "#DCE4E6",
+      "sky2": "#F1E6CE",
+      "ground": "#B89A66",
+      "grass": "#9C5B2E"
+    },
+    "winter": {
+      "sky1": "#DCE4E6",
+      "sky2": "#E6DDCB",
+      "ground": "#DCE4E6",
+      "grass": "#6F7378"
+    }
+  },
+  "seasonalOverridesByEra": {
+    "chengping": {
+      "spring": {
+        "sky1": "#8FB3B0",
+        "sky2": "#DCE4E6",
+        "ground": "#B89A66",
+        "grass": "#7FA05A"
+      },
+      "summer": {
+        "sky1": "#8FB3B0",
+        "sky2": "#DCE4E6",
+        "ground": "#B89A66",
+        "grass": "#3B6E53"
+      },
+      "autumn": {
+        "sky1": "#DCE4E6",
+        "sky2": "#F1E6CE",
+        "ground": "#B89A66",
+        "grass": "#9C5B2E"
+      },
+      "winter": {
+        "sky1": "#DCE4E6",
+        "sky2": "#E6DDCB",
+        "ground": "#DCE4E6",
+        "grass": "#6F7378"
+      }
+    },
+    "fengqi": {
+      "spring": {
+        "sky1": "#B4BCB8",
+        "sky2": "#CDCFC8",
+        "ground": "#AE9873",
+        "grass": "#8C9566"
+      },
+      "summer": {
+        "sky1": "#B4BCB8",
+        "sky2": "#CDCFC8",
+        "ground": "#AE9873",
+        "grass": "#3B6E53"
+      },
+      "autumn": {
+        "sky1": "#B4BCB8",
+        "sky2": "#CDCFC8",
+        "ground": "#AE9873",
+        "grass": "#B89A66"
+      },
+      "winter": {
+        "sky1": "#B4BCB8",
+        "sky2": "#CDCFC8",
+        "ground": "#DCE4E6",
+        "grass": "#6E7072"
+      }
+    },
+    "nandu": {
+      "spring": {
+        "sky1": "#DCE4E6",
+        "sky2": "#E9EDEB",
+        "ground": "#BDB6A4",
+        "grass": "#9AA88E"
+      },
+      "summer": {
+        "sky1": "#DCE4E6",
+        "sky2": "#E9EDEB",
+        "ground": "#BDB6A4",
+        "grass": "#3B6E53"
+      },
+      "autumn": {
+        "sky1": "#DCE4E6",
+        "sky2": "#E9EDEB",
+        "ground": "#BDB6A4",
+        "grass": "#B89A66"
+      },
+      "winter": {
+        "sky1": "#DCE4E6",
+        "sky2": "#E9EDEB",
+        "ground": "#DCE4E6",
+        "grass": "#7D848A"
+      }
+    },
+    "weicheng": {
+      "spring": {
+        "sky1": "#1B1A1F",
+        "sky2": "#2A272D",
+        "ground": "#3C3530",
+        "grass": "#3A3438"
+      },
+      "summer": {
+        "sky1": "#1B1A1F",
+        "sky2": "#2A272D",
+        "ground": "#3C3530",
+        "grass": "#36362E"
+      },
+      "autumn": {
+        "sky1": "#1B1A1F",
+        "sky2": "#2A272D",
+        "ground": "#3C3530",
+        "grass": "#4A3328"
+      },
+      "winter": {
+        "sky1": "#1B1A1F",
+        "sky2": "#2A272D",
+        "ground": "#5A4F49",
+        "grass": "#2E2B30"
+      }
+    }
+  },
+  "seasonPolicy": "季节只改天空、地、草；阴间不换季。年景优先：围城保持夜色，南渡保持冷色；具体季节候选在锚点并排审定前不作为量产批准。",
+  "note": "ERA_PAL与衣色逐字提取，不执行HTML。透明色单独占索引0。每图索引布局另存sidecar，不依赖颜色猜语义。"
+}
