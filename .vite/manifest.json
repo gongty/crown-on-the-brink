@@ -1,0 +1,30 @@
+{
+  "index.html": {
+    "file": "assets/index-B_t9SVL3.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "dynamicImports": [
+      "src/main.ts"
+    ],
+    "css": [
+      "assets/index-Cn5y86-5.css"
+    ],
+    "assets": [
+      "assets/guanjia-pixel-HxWtlhsz.woff2"
+    ]
+  },
+  "src/main.ts": {
+    "file": "assets/main-DgkwjwAM.js",
+    "name": "main",
+    "src": "src/main.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "src/public/fonts/guanjia-pixel.woff2": {
+    "file": "assets/guanjia-pixel-HxWtlhsz.woff2",
+    "src": "src/public/fonts/guanjia-pixel.woff2"
+  }
+}
